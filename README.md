@@ -18,8 +18,9 @@
 - Overfitting.
 - Learning principles.
 -  Measures and probability measure (P).
-### Unsupervised Learning, 
+#### Unsupervised Learning 
 - Definition and examples.
-### Selfsupervised Learning
-- Definition and examples
+#### Selfsupervised Learning
+- Definition and examples.
+  
 
