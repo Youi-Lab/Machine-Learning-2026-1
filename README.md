@@ -12,11 +12,12 @@
 - Tensor product theorem.
 - Tensor decompositions
 ### Statistical Learning Theory
-- Learning (supervised, unsupervised, selfsupervised)
+
 #### Supervised Learning
 - Training and testing.
 - Linear model.
 - Overfitting.
 - Learning principles.
 -  Measures and probability measure (P).
+#### Unsupervised Learning, Selfsupervised Learning
 
