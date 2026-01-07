@@ -4,19 +4,19 @@
 - Algebraic structures (groups, rings, fields, vector spaces, modules)
 - Metric spaces, normed spaces, inner-product spaces, Hilbert spaces.
 - Orthogonal projection theorem.
-- Tensor product theorem. 
-- Kolmogorov axioms overview.
-- Probability space (Ω,F,P)
-  - Sample space (Ω).
-  - σ-algebras.
-### lecture_notes_2.pdf
-- σ-algebra generators.
-- Measureble space.
-- Product space.
-- Borel algebras.
+- Mercer Theorem.
+- Partial detivates (chain rule for partial derivatives).
+- Gradient, Hessian matrix.
+- Gradient descent algoritms.
+- Tensors.
+- Tensor product theorem.
+- Tensor decompositions
+### Statistical Learning Theory
+- Learning (supervised, unsupervised, selfsupervised)
+## Supervised Learning
+- Training and testing.
+- Linear model.
+- Overfitting.
+- Learning principles.
 -  Measures and probability measure (P).
-### lecture_notes_3.pdf
-- Independence. 
-- Conditional probability.
-- Chain rule.
-- Bayes theorem.
+
