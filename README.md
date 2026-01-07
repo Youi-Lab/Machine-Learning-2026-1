@@ -13,7 +13,7 @@
 - Tensor decompositions
 ### Statistical Learning Theory
 - Learning (supervised, unsupervised, selfsupervised)
-## Supervised Learning
+#### Supervised Learning
 - Training and testing.
 - Linear model.
 - Overfitting.
