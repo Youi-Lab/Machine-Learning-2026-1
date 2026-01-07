@@ -11,13 +11,15 @@
 - Tensors.
 - Tensor product theorem.
 - Tensor decompositions
-### Statistical Learning Theory
-
-#### Supervised Learning
+### Learning
+#### Supervised Learning (Statistical Learning Theory)
 - Training and testing.
 - Linear model.
 - Overfitting.
 - Learning principles.
 -  Measures and probability measure (P).
-#### Unsupervised Learning, Selfsupervised Learning
+### Unsupervised Learning, 
+- Definition and examples.
+### Selfsupervised Learning
+- Definition and examples
 
