@@ -2,7 +2,7 @@
 
 You can find the course syllabus in th file: *Aprendizaje de Máquina.pdf*
 
-### Course prerequisites (Linear Algebra, Probability and Statistics and Differential Calculus).
+### Course prerequisites (Linear Algebra, Probability and Statistics and Differential Calculus)
 - Basic Information Theory tools (entropy, information, mutual information, KL-Diveregence).
 - Algebraic structures (groups, rings, fields, vector spaces, modules).
 - Metric spaces, normed spaces, inner-product spaces, Hilbert spaces.
@@ -12,7 +12,7 @@ You can find the course syllabus in th file: *Aprendizaje de Máquina.pdf*
 - Gradient and  Hessian.
 - Gradient descent algoritms.
 - Tensors (tensor product theorem).
-  
+--- 
 ### Statistical Learning Theory: key concepts
 - Supervised, unsupervised and selfsupervised learning (definition and key examples).
 - Supervised Learning (Probablly Approximate Learning)
@@ -21,6 +21,7 @@ You can find the course syllabus in th file: *Aprendizaje de Máquina.pdf*
   - Overfitting (regularization and validation techniques).
   - Learning principles (Ocam's Razor, sampling bias, data snooping).
   - Modern Statistical Learning Theory insights.
+    
 ### Basic Machine Learning Algorithms 
 #### Classificcation
 - Linear Discriminant Analysis
