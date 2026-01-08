@@ -18,7 +18,7 @@
 - Linear model (linear regression, logistic regression).
 - Overfitting (regularization and validation techniques).
 - Learning principles (Ocam's Razor, sampling bias, data snooping).
-- Modern Statistical learning Theory insights.
+- Modern Statistical Learning Theory insights.
 #### Unsupervised Learning 
 - Definition and examples.
 #### Selfsupervised Learning
