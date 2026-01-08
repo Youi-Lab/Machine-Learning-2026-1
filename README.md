@@ -13,17 +13,15 @@ You can find the course syllabus in th file: *Aprendizaje de Máquina.pdf*
 - Gradient descent algoritms.
 - Tensors (tensor product theorem).
   
-### 1. Learning
-#### Supervised Learning (Statistical Learning Theory)
-- Training and testing (theory of generalization, generalization bound, generalization tradeoff, bias-variance tradeoff, and learning curves).
-- Linear model (linear regression, logistic regression).
-- Overfitting (regularization and validation techniques).
-- Learning principles (Ocam's Razor, sampling bias, data snooping).
-- Modern Statistical Learning Theory insights.
-#### Unsupervised Learning 
-- Definition and examples.
-#### Selfsupervised Learning
-- Definition and examples.
+### Learning: key concepts
+- Supervised, unsupervised and selfsupervised learning (definition and key examples).
+- Supervised Learning (Probablly Approximate Learning)
+-- Training and testing (theory of generalization, generalization bound, generalization tradeoff, bias-variance tradeoff, and learning curves).
+-- Linear model (linear regression, logistic regression).
+-- Overfitting (regularization and validation techniques).
+-- Learning principles (Ocam's Razor, sampling bias, data snooping).
+-- Modern Statistical Learning Theory insights.
+
 ### 3. Basic Machine Learning Algorithms 
 #### Classificcation
 - Linear Discriminant Analysis
