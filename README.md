@@ -1,18 +1,19 @@
 ## Machine Learning 2026-1
 
-### *Requirements: Linear Algebra, Probability and Statistics and Differential Calculus*.
+You can find the course syllabus in th file: *Aprendizaje de Máquina.pdf*
 
-### 1. Math Review
-- Basic Information Theory tools (entropy, information, mutual entropy, KL-Diveregence).
+### Course prerequisites (Linear Algebra, Probability and Statistics and Differential Calculus).
+- Basic Information Theory tools (entropy, information, mutual information, KL-Diveregence).
 - Algebraic structures (groups, rings, fields, vector spaces, modules)
 - Metric spaces, normed spaces, inner-product spaces, Hilbert spaces.
 - Orthogonal projection theorem.
 - Mercer Theorem.
-- Partial detivates (chain rule for partial derivatives).
-- Gradient and  Hessian matrix.
-- Gradient descent algoritm.
-- Tensors (tensor product theorem). 
-### 2. Learning
+- Partial detivates (definition, chain rule for partial derivatives).
+- Gradient and  Hessian.
+- Gradient descent algoritms.
+- Tensors (tensor product theorem).
+  
+### 1. Learning
 #### Supervised Learning (Statistical Learning Theory)
 - Training and testing (theory of generalization, generalization bound, generalization tradeoff, bias-variance tradeoff, and learning curves).
 - Linear model (linear regression, logistic regression).
