@@ -1,6 +1,6 @@
 ## Machine Learning 2026-1
 
-### Requirements: Linear Algebra, Probability and Statistics and Differential Calculus.
+### *Requirements: Linear Algebra, Probability and Statistics and Differential Calculus.
 
 ### 1. Math Review
 - Basic Information Theory tools (entropy, information, mutual entropy, KL-Diveregence).
