@@ -1,6 +1,6 @@
 ## Machine Learning 2026-1
 
-### Math Review
+### 1. Math Review
 - Algebraic structures (groups, rings, fields, vector spaces, modules)
 - Metric spaces, normed spaces, inner-product spaces, Hilbert spaces.
 - Orthogonal projection theorem.
@@ -11,7 +11,7 @@
 - Tensors.
 - Tensor product theorem.
 - Tensor decompositions
-### Learning
+### 2. Learning
 #### Supervised Learning (Statistical Learning Theory)
 - Training and testing.
 - Linear model (logistic regression, ridge regression, generalized linear models).
@@ -22,7 +22,7 @@
 - Definition and examples.
 #### Selfsupervised Learning
 - Definition and examples.
-### Basic Machine Learning Algorithms 
+### 3. Basic Machine Learning Algorithms 
 #### Classificcation
 - Naive Bayes.
 - Nearest-neighbors.
