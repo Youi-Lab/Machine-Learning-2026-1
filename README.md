@@ -1,7 +1,7 @@
 # Machine Learning 2026-1
----
 
-### Syllabus *Aprendizaje de Máquina.pdf*
+
+### Syllabus: *Aprendizaje de Máquina.pdf*
 
 ---
 ### Course prerequisites (Linear Algebra, Probability and Statistics and Differential Calculus)
