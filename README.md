@@ -6,7 +6,7 @@
 - Orthogonal projection theorem.
 - Mercer Theorem.
 - Partial detivates (chain rule for partial derivatives).
-- Gradient, Hessian matrix.
+- Gradient and  Hessian matrix.
 - Gradient descent algoritm.
 - Tensors (Tensor Product Theorem, Tensor decompositions).
 ### 2. Learning
