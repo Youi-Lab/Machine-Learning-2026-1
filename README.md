@@ -1,8 +1,8 @@
-## Machine Learning 2026-1
+# Machine Learning 2026-1
 
 You can find the course syllabus in th file: *Aprendizaje de Máquina.pdf*
 
-*** 
+---- 
 ### Course prerequisites (Linear Algebra, Probability and Statistics and Differential Calculus)
 - Basic Information Theory tools (entropy, information, mutual information, KL-Diveregence).
 - Algebraic structures (groups, rings, fields, vector spaces, modules).
