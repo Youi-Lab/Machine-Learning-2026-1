@@ -1,6 +1,9 @@
 ## Machine Learning 2026-1
 
+### Requires: Probability and Statistics.
+
 ### 1. Math Review
+- Basic Information Theory tools (entropy, information, mutual entropy, KL-Diveregence).
 - Algebraic structures (groups, rings, fields, vector spaces, modules)
 - Metric spaces, normed spaces, inner-product spaces, Hilbert spaces.
 - Orthogonal projection theorem.
