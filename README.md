@@ -5,7 +5,7 @@
 ### Syllabus: *syllabus.pdf*
 
 
-### Course prerequisites (Linear Algebra, Probability and Statistics and Differential Calculus)
+### Course prerequisites (*Linear Algebra, Probability and Statistics and Differential Calculus*)
 - Basic Information Theory tools (entropy, information, mutual information, KL-Diveregence).
 - Algebraic structures (groups, rings, fields, vector spaces, modules).
 - Metric spaces, normed spaces, inner-product spaces, Hilbert spaces.
