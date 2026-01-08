@@ -8,7 +8,7 @@
 - Partial detivates (chain rule for partial derivatives).
 - Gradient and  Hessian matrix.
 - Gradient descent algoritm.
-- Tensors (Tensor Product Theorem, Tensor decompositions).
+- Tensors (Tensor Product Theorem, tensor decompositions).
 ### 2. Learning
 #### Supervised Learning (Statistical Learning Theory)
 - Training and testing (theory of generalization, generalization bound, gemeralization tradeoff, bias-variance tradeoff, and learning curve).
