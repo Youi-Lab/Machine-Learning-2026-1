@@ -15,7 +15,6 @@
 - Linear model (logistic regression, ridge regression, generalized linear models).
 - Overfitting.
 - Learning principles.
-- Multilayer perception (backpropagation, feed-forward, aand stochastic  gradient descent algoritms).
 #### Unsupervised Learning 
 - Definition and examples.
 #### Selfsupervised Learning
@@ -30,11 +29,13 @@
 - Random Forest.
 - Gradient Boosting Machines.
 - Support Vector Machines.
+- Multilayer perception (backpropagation).
 - Stacking techniques.
 #### Regression
 - Nearest-neighbors Regression.
 - Random Forest Regression.
 - Support Vector Regression.
+- Multilayer perception.
 - Gaussian Process Regression.
 #### Clustering
 - k-Means.
