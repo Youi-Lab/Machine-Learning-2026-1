@@ -12,9 +12,9 @@
 ### 2. Learning
 #### Supervised Learning (Statistical Learning Theory)
 - Training and testing (theory of generalization, generalization bound, generalization tradeoff, bias-variance tradeoff, and learning curves).
-- Linear model (logistic regression, ridge regression, generalized linear models).
-- Overfitting (validation set, model selection, cross validation).
-- Learning principles.
+- Linear model (linear regression, logistic regression).
+- Overfitting (regularization and validation techniques).
+- Learning principles (Ocam's Razor, sampling bias, data snooping).
 #### Unsupervised Learning 
 - Definition and examples.
 #### Selfsupervised Learning
