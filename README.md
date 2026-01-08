@@ -18,7 +18,7 @@
 
 ### Statistical Learning Theory: Key concepts
 - Supervised, unsupervised and selfsupervised learning (definition and key examples).
-- Supervised Learning (Probablly Approximate Learning)
+- Supervised Learning (Probablly Approximate Correct Learning)
   - Training and testing (theory of generalization, generalization bound, generalization tradeoff, bias-variance tradeoff, and learning curves).
   - Linear model (linear regression, logistic regression).
   - Overfitting (regularization and validation techniques).
