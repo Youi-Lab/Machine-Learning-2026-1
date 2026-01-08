@@ -25,6 +25,7 @@
 - Definition and examples.
 ### 3. Basic Machine Learning Algorithms 
 #### Classificcation
+- Linear Discriminant Analysis
 - Naive Bayes.
 - Nearest-neighbors.
 - Decision Trees.
