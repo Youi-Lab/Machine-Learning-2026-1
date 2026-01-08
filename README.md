@@ -29,13 +29,13 @@
 - Random Forest.
 - Gradient Boosting Machines.
 - Support Vector Machines.
-- Multilayer perception (backpropagation).
+- Multilayer perceptron (backpropagation).
 - Stacking techniques.
 #### Regression
 - Nearest-neighbors Regression.
 - Random Forest Regression.
 - Support Vector Regression.
-- Multilayer perception.
+- Multilayer perceptron.
 - Gaussian Process Regression.
 #### Clustering
 - k-Means.
