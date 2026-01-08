@@ -1,3 +1,4 @@
+
 # Machine Learning 2026-1
 
 
@@ -24,7 +25,6 @@
   - Learning principles (Ocam's Razor, sampling bias, data snooping).
   - Modern Statistical Learning Theory insights.
 
----  
 
 ### Basic Machine Learning Algorithms 
 #### Classificcation
