@@ -16,7 +16,7 @@
 - Gradient descent algoritms.
 - Tensors (tensor product theorem).
 
-### Statistical Learning Theory: key concepts
+### Statistical Learning Theory: Key concepts
 - Supervised, unsupervised and selfsupervised learning (definition and key examples).
 - Supervised Learning (Probablly Approximate Learning)
   - Training and testing (theory of generalization, generalization bound, generalization tradeoff, bias-variance tradeoff, and learning curves).
