@@ -11,7 +11,7 @@
 - Tensors (Tensor Product Theorem, Tensor decompositions).
 ### 2. Learning
 #### Supervised Learning (Statistical Learning Theory)
-- Training and testing (theory of generalization, generalization bound, gemeralization tradeoff, bias-variance tradeoff, learning curve).
+- Training and testing (theory of generalization, generalization bound, gemeralization tradeoff, bias-variance tradeoff, and learning curve).
 - Linear model (logistic regression, ridge regression, generalized linear models).
 - Overfitting (validation set, model selection, cross validation).
 - Learning principles.
