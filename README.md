@@ -32,11 +32,11 @@
 - Multilayer perceptron (backpropagation).
 - Stacking techniques.
 #### Regression
-- Nearest-neighbors Regression.
-- Random Forest Regression.
-- Support Vector Regression.
+- Nearest-neighbors.
+- Random Forest.
+- Support Vector.
 - Multilayer perceptron.
-- Gaussian Process Regression.
+- Gaussian Process.
 #### Clustering
 - k-Means.
 - Hierarchical Clustering.
