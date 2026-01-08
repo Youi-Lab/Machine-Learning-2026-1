@@ -34,7 +34,7 @@
 - Support Vector Machines.
 - Stacking techniques.
 #### Regression
-- - Nearest-neighbors Regression.
+- Nearest-neighbors Regression.
 - Random Forest Regression.
 - Support Vector Regression.
 - Gaussian Process Regression.
