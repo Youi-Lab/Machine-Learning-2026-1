@@ -441,7 +441,491 @@ d_M(x, y) = \sqrt{(x-y)^T \Sigma^{-1} (x-y)}
 \]
 \end{definition}
 
+\begin{definition}[Normed Space]
+A \textbf{normed space} (or normed vector space) is a pair $(V, \|\cdot\|)$ where $V$ is a vector space over a field $\mathbb{F}$ (usually $\mathbb{R}$ or $\mathbb{C}$) and $\|\cdot\|: V \to [0,\infty)$ is a function called a \textbf{norm} that satisfies the following properties for all $x, y \in V$ and all scalars $\alpha \in \mathbb{F}$:
 
+\begin{enumerate}
+    \item \textbf{Positivity:} $\|x\| \geq 0$, and $\|x\| = 0$ if and only if $x = 0$
+    \item \textbf{Homogeneity:} $\|\alpha x\| = |\alpha| \cdot \|x\|$
+    \item \textbf{Triangle Inequality:} $\|x + y\| \leq \|x\| + \|y\|$
+\end{enumerate}
+\end{definition}
+
+\section{Important Examples}
+
+\begin{example}[Euclidean Space $\mathbb{R}^n$]
+The vector space $\mathbb{R}^n$ with the Euclidean norm (or 2-norm) defined by
+\[
+\|x\|_2 = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2} = \sqrt{\sum_{i=1}^n x_i^2}
+\]
+for $x = (x_1, x_2, \ldots, x_n) \in \mathbb{R}^n$ is a normed space.
+\end{example}
+
+\begin{example}[$p$-norms on $\mathbb{R}^n$]
+For $1 \leq p < \infty$, the $p$-norm on $\mathbb{R}^n$ is defined by
+\[
+\|x\|_p = \left(\sum_{i=1}^n |x_i|^p\right)^{1/p}
+\]
+Special cases:
+\begin{itemize}
+    \item $p = 1$: $\|x\|_1 = |x_1| + |x_2| + \cdots + |x_n|$ (Manhattan norm)
+    \item $p = 2$: $\|x\|_2 = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}$ (Euclidean norm)
+    \item $p = \infty$: $\|x\|_\infty = \max_{1 \leq i \leq n} |x_i|$ (supremum norm)
+\end{itemize}
+\end{example}
+
+\begin{example}[Space of Continuous Functions]
+Let $C[a,b]$ be the vector space of continuous real-valued functions on the closed interval $[a,b]$. The supremum norm (or uniform norm) is defined by
+\[
+\|f\|_\infty = \sup_{x \in [a,b]} |f(x)| = \max_{x \in [a,b]} |f(x)|
+\]
+This makes $(C[a,b], \|\cdot\|_\infty)$ a normed space.
+\end{example}
+
+\begin{example}[$L^p$ Spaces]
+For $1 \leq p < \infty$, the space $L^p[a,b]$ consists of measurable functions $f: [a,b] \to \mathbb{R}$ such that
+\[
+\|f\|_p = \left(\int_a^b |f(x)|^p \, dx\right)^{1/p} < \infty
+\]
+This defines a norm on $L^p[a,b]$ (technically on equivalence classes of functions that differ only on sets of measure zero).
+\end{example}
+
+\begin{example}[Sequence Spaces $\ell^p$]
+For $1 \leq p < \infty$, the space $\ell^p$ consists of all sequences $(x_n)_{n=1}^\infty$ of real (or complex) numbers such that
+\[
+\|x\|_p = \left(\sum_{n=1}^\infty |x_n|^p\right)^{1/p} < \infty
+\]
+For $p = \infty$, the space $\ell^\infty$ consists of bounded sequences with norm
+\[
+\|x\|_\infty = \sup_{n \in \mathbb{N}} |x_n|
+\]
+\end{example}
+
+\begin{example}[Matrix Norms]
+The space $\mathbb{R}^{m \times n}$ of $m \times n$ real matrices can be equipped with various norms, such as the Frobenius norm:
+\[
+\|A\|_F = \sqrt{\sum_{i=1}^m \sum_{j=1}^n |a_{ij}|^2}
+\]
+or the operator norm (induced norm):
+\[
+\|A\|_{op} = \sup_{\|x\|=1} \|Ax\|
+\]
+\end{example}
+
+\section{Properties and Remarks}
+
+\begin{theorem}[Equivalence of Norms in Finite Dimensions]
+In a finite-dimensional vector space, all norms are equivalent. That is, if $\|\cdot\|_\alpha$ and $\|\cdot\|_\beta$ are two norms on a finite-dimensional space $V$, then there exist constants $c, C > 0$ such that
+\[
+c\|x\|_\alpha \leq \|x\|_\beta \leq C\|x\|_\alpha
+\]
+for all $x \in V$.
+\end{theorem}
+
+\textbf{Remark:} Every normed space is a metric space with the metric induced by the norm:
+\[
+d(x,y) = \|x - y\|
+\]
+
+\textbf{Remark:} A normed space that is complete with respect to the metric induced by its norm is called a \textbf{Banach space}.
+
+\begin{definition}[Inner Product Space]
+An \textbf{inner product space} is a vector space $V$ over a field $\mathbb{F}$ (where $\mathbb{F} = \mathbb{R}$ or $\mathbb{F} = \mathbb{C}$) equipped with an \textbf{inner product}, which is a function $\langle \cdot, \cdot \rangle: V \times V \to \mathbb{F}$ satisfying the following properties for all $x, y, z \in V$ and all scalars $\alpha, \beta \in \mathbb{F}$:
+
+\begin{enumerate}
+    \item \textbf{Conjugate Symmetry:} $\langle x, y \rangle = \overline{\langle y, x \rangle}$
+    
+    (For real spaces: $\langle x, y \rangle = \langle y, x \rangle$)
+    
+    \item \textbf{Linearity in the First Argument:}
+    \[
+    \langle \alpha x + \beta y, z \rangle = \alpha \langle x, z \rangle + \beta \langle y, z \rangle
+    \]
+    
+    \item \textbf{Positive Definiteness:} $\langle x, x \rangle \geq 0$, and $\langle x, x \rangle = 0$ if and only if $x = 0$
+\end{enumerate}
+
+\textbf{Note:} From properties (1) and (2), the inner product is conjugate-linear (antilinear) in the second argument:
+\[
+\langle x, \alpha y + \beta z \rangle = \overline{\alpha} \langle x, y \rangle + \overline{\beta} \langle x, z \rangle
+\]
+\end{definition}
+
+\begin{definition}[Hilbert Space]
+A \textbf{Hilbert space} is an inner product space that is complete with respect to the norm induced by the inner product.
+\end{definition}
+
+\section{Induced Norm}
+
+Every inner product induces a norm on the vector space defined by:
+\[
+\|x\| = \sqrt{\langle x, x \rangle}
+\]
+
+This norm satisfies all the axioms of a normed space and additionally satisfies the \textbf{parallelogram law}:
+\[
+\|x + y\|^2 + \|x - y\|^2 = 2(\|x\|^2 + \|y\|^2)
+\]
+
+\section{Important Examples}
+
+\begin{example}[Euclidean Space $\mathbb{R}^n$]
+The vector space $\mathbb{R}^n$ with the standard inner product (dot product):
+\[
+\langle x, y \rangle = x \cdot y = \sum_{i=1}^n x_i y_i = x_1 y_1 + x_2 y_2 + \cdots + x_n y_n
+\]
+for $x = (x_1, \ldots, x_n)$ and $y = (y_1, \ldots, y_n)$.
+
+The induced norm is the Euclidean norm: $\|x\| = \sqrt{\sum_{i=1}^n x_i^2}$
+\end{example}
+
+\begin{example}[Complex Space $\mathbb{C}^n$]
+The vector space $\mathbb{C}^n$ with the standard Hermitian inner product:
+\[
+\langle x, y \rangle = \sum_{i=1}^n x_i \overline{y_i}
+\]
+where $\overline{y_i}$ denotes the complex conjugate of $y_i$.
+
+Note the conjugate is on the second argument in this convention.
+\end{example}
+
+\begin{example}[Weighted Inner Product on $\mathbb{R}^n$]
+For a vector of positive weights $w = (w_1, w_2, \ldots, w_n)$ with $w_i > 0$, we can define:
+\[
+\langle x, y \rangle_w = \sum_{i=1}^n w_i x_i y_i
+\]
+This is an inner product on $\mathbb{R}^n$ different from the standard one.
+\end{example}
+
+\begin{example}[Space of Continuous Functions]
+Let $C[a,b]$ be the space of continuous real-valued functions on $[a,b]$. The $L^2$ inner product is defined by:
+\[
+\langle f, g \rangle = \int_a^b f(x) g(x) \, dx
+\]
+
+The induced norm is: $\|f\| = \sqrt{\int_a^b f(x)^2 \, dx}$
+
+\textbf{Note:} This space is not complete under this norm; its completion is $L^2[a,b]$.
+\end{example}
+
+\begin{example}[Weighted $L^2$ Space]
+With a positive weight function $w(x) > 0$, we can define:
+\[
+\langle f, g \rangle_w = \int_a^b f(x) g(x) w(x) \, dx
+\]
+This is useful in orthogonal polynomial theory and approximation theory.
+\end{example}
+
+\begin{example}[$L^2(\mathbb{R})$ Space]
+The space $L^2(\mathbb{R})$ of square-integrable functions with inner product:
+\[
+\langle f, g \rangle = \int_{-\infty}^{\infty} f(x) \overline{g(x)} \, dx
+\]
+This is a Hilbert space (complete inner product space) fundamental in quantum mechanics and Fourier analysis.
+\end{example}
+
+\begin{example}[Sequence Space $\ell^2$]
+The space $\ell^2$ of square-summable sequences $(x_n)_{n=1}^\infty$ with inner product:
+\[
+\langle x, y \rangle = \sum_{n=1}^\infty x_n \overline{y_n}
+\]
+where the series converges absolutely.
+
+This is a Hilbert space with induced norm: $\|x\| = \sqrt{\sum_{n=1}^\infty |x_n|^2}$
+\end{example}
+
+\begin{example}[Matrix Inner Product (Frobenius)]
+For $m \times n$ matrices $A, B$ over $\mathbb{R}$ or $\mathbb{C}$:
+\[
+\langle A, B \rangle = \text{tr}(B^* A) = \sum_{i=1}^m \sum_{j=1}^n A_{ij} \overline{B_{ij}}
+\]
+where $B^*$ is the conjugate transpose of $B$ and $\text{tr}$ denotes the trace.
+
+For real matrices: $\langle A, B \rangle = \text{tr}(B^T A) = \sum_{i,j} A_{ij} B_{ij}$
+\end{example}
+
+\begin{example}[Polynomial Space with Integration Inner Product]
+Let $P_n[a,b]$ be the space of polynomials of degree at most $n$ on $[a,b]$. Define:
+\[
+\langle p, q \rangle = \int_a^b p(x) q(x) \, dx
+\]
+This makes $P_n[a,b]$ an inner product space.
+\end{example}
+
+\section{Important Properties}
+
+\begin{theorem}[Cauchy-Schwarz Inequality]
+For any inner product space and any $x, y \in V$:
+\[
+|\langle x, y \rangle| \leq \|x\| \cdot \|y\|
+\]
+with equality if and only if $x$ and $y$ are linearly dependent.
+\end{theorem}
+
+\begin{definition}[Orthogonality]
+Two vectors $x, y \in V$ are \textbf{orthogonal} (written $x \perp y$) if $\langle x, y \rangle = 0$.
+\end{definition}
+
+\begin{theorem}[Pythagorean Theorem]
+If $x \perp y$, then:
+\[
+\|x + y\|^2 = \|x\|^2 + \|y\|^2
+\]
+\end{theorem}
+
+\begin{proposition}[Parallelogram Law]
+In any inner product space:
+\[
+\|x + y\|^2 + \|x - y\|^2 = 2(\|x\|^2 + \|y\|^2)
+\]
+Moreover, a norm comes from an inner product if and only if it satisfies the parallelogram law.
+\end{proposition}
+
+\section{Orthonormal Bases}
+
+\begin{definition}[Orthonormal Set]
+A set of vectors $\{e_\alpha\}_{\alpha \in I}$ is \textbf{orthonormal} if:
+\[
+\langle e_\alpha, e_\beta \rangle = \delta_{\alpha\beta} = \begin{cases}
+1 & \text{if } \alpha = \beta \\
+0 & \text{if } \alpha \neq \beta
+\end{cases}
+\]
+\end{definition}
+
+\textbf{Remark:} Every inner product space has an orthonormal basis. If $\{e_1, e_2, \ldots, e_n\}$ is an orthonormal basis for a finite-dimensional inner product space, then any vector $x$ can be written as:
+\[
+x = \sum_{i=1}^n \langle x, e_i \rangle e_i
+\]
+
+
+\title{Hilbert Spaces: Definitions and Examples}
+
+\section{Hilbert Spaces}
+
+\begin{definition}[Cauchy Sequence]
+A sequence $(x_n)$ in an inner product space $V$ is called a \textbf{Cauchy sequence} if for every $\epsilon > 0$, there exists $N \in \mathbb{N}$ such that:
+\[
+\|x_n - x_m\| < \epsilon \quad \text{for all } n, m \geq N
+\]
+\end{definition}
+
+\begin{definition}[Complete Metric Space]
+A metric space is \textbf{complete} if every Cauchy sequence in the space converges to a limit within the space.
+\end{definition}
+
+\begin{definition}[Hilbert Space]
+A \textbf{Hilbert space} $\mathcal{H}$ is an inner product space that is complete with respect to the norm induced by the inner product:
+\[
+\|x\| = \sqrt{\langle x, x \rangle}
+\]
+
+In other words, a Hilbert space is a complete inner product space.
+\end{definition}
+
+
+Every finite-dimensional inner product space is automatically a Hilbert space, since all finite-dimensional normed spaces are complete. The interesting examples are infinite-dimensional.
+
+
+\section{Examples of Hilbert Spaces}
+
+\begin{example}[Euclidean Space $\mathbb{R}^n$]
+The space $\mathbb{R}^n$ with the standard inner product:
+\[
+\langle x, y \rangle = \sum_{i=1}^n x_i y_i
+\]
+is a Hilbert space. The induced norm is $\|x\| = \sqrt{\sum_{i=1}^n x_i^2}$.
+
+This is a finite-dimensional Hilbert space of dimension $n$.
+\end{example}
+
+\begin{example}[Complex Euclidean Space $\mathbb{C}^n$]
+The space $\mathbb{C}^n$ with the Hermitian inner product:
+\[
+\langle x, y \rangle = \sum_{i=1}^n x_i \overline{y_i}
+\]
+is a Hilbert space. This is fundamental in quantum mechanics, where quantum states are represented as vectors in $\mathbb{C}^n$ (for finite-dimensional systems).
+\end{example}
+
+\begin{example}[Sequence Space $\ell^2$]
+The space $\ell^2$ consists of all infinite sequences $x = (x_1, x_2, x_3, \ldots)$ of real or complex numbers such that:
+\[
+\sum_{n=1}^\infty |x_n|^2 < \infty
+\]
+
+The inner product is defined by:
+\[
+\langle x, y \rangle = \sum_{n=1}^\infty x_n \overline{y_n}
+\]
+
+The induced norm is: $\|x\|_2 = \sqrt{\sum_{n=1}^\infty |x_n|^2}$
+
+This is a separable, infinite-dimensional Hilbert space. It serves as the canonical model for separable Hilbert spaces.
+\end{example}
+
+\begin{example}[ Space Square Integrable Functions]
+The space $L^2[a,b]$ consists of (equivalence classes of) measurable functions $f: [a,b] \to \mathbb{C}$ such that:
+\[
+\int_a^b |f(x)|^2 \, dx < \infty
+\]
+
+The inner product is:
+\[
+\langle f, g \rangle = \int_a^b f(x) \overline{g(x)} \, dx
+\]
+
+The induced norm is: $\|f\|_2 = \sqrt{\int_a^b |f(x)|^2 \, dx}$
+
+This is a separable, infinite-dimensional Hilbert space. Functions that differ only on a set of measure zero are identified.
+\end{example}
+
+\begin{example}[$L^2(\mathbb{R})$ Space]
+The space $L^2(\mathbb{R})$ consists of measurable functions $f: \mathbb{R} \to \mathbb{C}$ such that:
+\[
+\int_{-\infty}^{\infty} |f(x)|^2 \, dx < \infty
+\]
+
+With inner product:
+\[
+\langle f, g \rangle = \int_{-\infty}^{\infty} f(x) \overline{g(x)} \, dx
+\]
+
+This is the fundamental Hilbert space in quantum mechanics (for particles in one dimension) and Fourier analysis. The Fourier transform is a unitary operator on this space.
+\end{example}
+
+\begin{example}[$L^2(\mathbb{R}^n)$ Space]
+The natural generalization to $n$ dimensions: measurable functions $f: \mathbb{R}^n \to \mathbb{C}$ with:
+\[
+\int_{\mathbb{R}^n} |f(x)|^2 \, dx < \infty
+\]
+
+Inner product:
+\[
+\langle f, g \rangle = \int_{\mathbb{R}^n} f(x) \overline{g(x)} \, dx
+\]
+
+This space is fundamental in partial differential equations and quantum mechanics for multi-particle systems.
+\end{example}
+
+\begin{example}[Sobolev Space $H^1(\Omega)$]
+For an open set $\Omega \subset \mathbb{R}^n$, the Sobolev space $H^1(\Omega)$ consists of functions $f \in L^2(\Omega)$ whose weak derivatives also belong to $L^2(\Omega)$:
+\[
+H^1(\Omega) = \{f \in L^2(\Omega) : \partial_i f \in L^2(\Omega) \text{ for } i = 1, \ldots, n\}
+\]
+
+The inner product is:
+\[
+\langle f, g \rangle_{H^1} = \int_\Omega f(x) \overline{g(x)} \, dx + \sum_{i=1}^n \int_\Omega \partial_i f(x) \overline{\partial_i g(x)} \, dx
+\]
+
+Sobolev spaces are crucial in the theory of partial differential equations.
+\end{example}
+
+\begin{example}[Hardy Space $H^2(\mathbb{D})$]
+The Hardy space $H^2(\mathbb{D})$ consists of holomorphic functions $f$ on the unit disk $\mathbb{D} = \{z \in \mathbb{C} : |z| < 1\}$ such that:
+\[
+\sup_{0 < r < 1} \int_0^{2\pi} |f(re^{i\theta})|^2 \, d\theta < \infty
+\]
+
+The inner product is:
+\[
+\langle f, g \rangle = \frac{1}{2\pi} \int_0^{2\pi} f(e^{i\theta}) \overline{g(e^{i\theta})} \, d\theta
+\]
+
+Hardy spaces are important in complex analysis and operator theory.
+\end{example}
+
+\begin{example}[Bergman Space $A^2(\mathbb{D})$]
+The Bergman space $A^2(\mathbb{D})$ consists of holomorphic functions on the unit disk that are square-integrable with respect to area measure:
+\[
+A^2(\mathbb{D}) = \left\{f : \mathbb{D} \to \mathbb{C} \text{ holomorphic} : \int_{\mathbb{D}} |f(z)|^2 \, dA(z) < \infty\right\}
+\]
+
+Inner product:
+\[
+\langle f, g \rangle = \frac{1}{\pi} \int_{\mathbb{D}} f(z) \overline{g(z)} \, dA(z)
+\]
+
+where $dA(z) = dx \, dy$ is the area element.
+\end{example}
+
+\section{Non-Examples}
+
+\begin{example}[The Space C[a,b] is NOT Complete]
+Consider $C[a,b]$ with the $L^2$ inner product:
+\[
+\langle f, g \rangle = \int_a^b f(x) g(x) \, dx
+\]
+
+This is an inner product space but NOT a Hilbert space because it is not complete. There exist Cauchy sequences of continuous functions whose limits (in the $L^2$ norm) are not continuous.
+
+For instance, on $[-1,1]$, the sequence:
+\[
+f_n(x) = \begin{cases}
+-1 & x \in [-1, -1/n) \\
+nx & x \in [-1/n, 1/n] \\
+1 & x \in (1/n, 1]
+\end{cases}
+\]
+converges in $L^2$ norm to the discontinuous sign function.
+\end{example}
+
+\section{Key Properties of Hilbert Spaces}
+
+\begin{theorem}[Riesz Representation Theorem]
+Let $\mathcal{H}$ be a Hilbert space and let $\phi: \mathcal{H} \to \mathbb{F}$ be a bounded linear functional. Then there exists a unique $y \in \mathcal{H}$ such that:
+\[
+\phi(x) = \langle x, y \rangle \quad \text{for all } x \in \mathcal{H}
+\]
+Moreover, $\|\phi\| = \|y\|$.
+\end{theorem}
+
+\begin{theorem}[Projection Theorem]
+Let $\mathcal{H}$ be a Hilbert space and let $M$ be a closed subspace of $\mathcal{H}$. Then every $x \in \mathcal{H}$ can be uniquely written as:
+\[
+x = y + z
+\]
+where $y \in M$ and $z \in M^\perp$ (the orthogonal complement of $M$). Moreover, $y$ is the unique element of $M$ closest to $x$.
+\end{theorem}
+
+\begin{definition}[Orthonormal Basis]
+A set $\{e_\alpha\}_{\alpha \in I}$ in a Hilbert space $\mathcal{H}$ is an \textbf{orthonormal basis} if:
+\begin{enumerate}
+    \item $\langle e_\alpha, e_\beta \rangle = \delta_{\alpha\beta}$ (orthonormality)
+    \item The set $\{e_\alpha\}_{\alpha \in I}$ is maximal, i.e., the only vector orthogonal to all $e_\alpha$ is the zero vector
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Parseval's Identity]
+If $\{e_n\}_{n=1}^\infty$ is an orthonormal basis for a separable Hilbert space $\mathcal{H}$, then for any $x \in \mathcal{H}$:
+\[
+\|x\|^2 = \sum_{n=1}^\infty |\langle x, e_n \rangle|^2
+\]
+and
+\[
+x = \sum_{n=1}^\infty \langle x, e_n \rangle e_n
+\]
+\end{theorem}
+
+\begin{corollary}[Bessel's Inequality]
+For any orthonormal set $\{e_n\}_{n=1}^N$ (not necessarily a basis) and any $x \in \mathcal{H}$:
+\[
+\sum_{n=1}^N |\langle x, e_n \rangle|^2 \leq \|x\|^2
+\]
+\end{corollary}
+
+\section{Separability}
+
+\begin{definition}[Separable Hilbert Space]
+A Hilbert space $\mathcal{H}$ is \textbf{separable} if it contains a countable dense subset.
+\end{definition}
+
+\begin{theorem}
+A Hilbert space is separable if and only if it has a countable orthonormal basis.
+\end{theorem}
+
+
+All the concrete examples listed above ($\ell^2$, $L^2[a,b]$, $L^2(\mathbb{R}^n)$, Hardy spaces, etc.) are separable Hilbert spaces. Every separable infinite-dimensional Hilbert space is isometrically isomorphic to $\ell^2$.
 
 
 
