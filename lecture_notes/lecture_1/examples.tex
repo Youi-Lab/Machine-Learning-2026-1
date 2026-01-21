@@ -1,0 +1,2218 @@
+
+\documentclass{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{tikz}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+\section*{Finite Group of Order 5 Using Symbols}
+
+Let $G = \{ e, a, b, c, d \}$ be a set with five distinct symbols, where $e$ is the identity element. 
+Define the binary operation $\ast$ by the following Cayley table:
+
+\[
+\begin{array}{c|ccccc}
+\ast & e & a & b & c & d \\
+\hline
+e & e & a & b & c & d \\
+a & a & b & c & d & e \\
+b & b & c & d & e & a \\
+c & c & d & e & a & b \\
+d & d & e & a & b & c \\
+\end{array}
+\]
+
+\subsection*{Verification of Group Axioms}
+
+\begin{enumerate}
+    \item \textbf{Closure:} The table shows that for any $x, y \in G$, $x \ast y \in G$.
+    
+    \item \textbf{Associativity:} Since this structure is isomorphic to the cyclic group $\mathbb{Z}_5$, 
+    associativity follows from the group properties of $\mathbb{Z}_5$. 
+    For example:
+    \[
+    (a \ast b) \ast c = c \ast c = e, \quad
+    a \ast (b \ast c) = a \ast e = a.
+    \]
+    Actually, let's verify correctly:
+    \[
+    a \ast b = c, \quad c \ast c = e, \quad
+    b \ast c = e, \quad a \ast e = a.
+    \]
+    Wait, that doesn't match. Let's check carefully from the table:
+    \[
+    a \ast b = c, \quad (a \ast b) \ast c = c \ast c = e,
+    \]
+    \[
+    b \ast c = d, \quad a \ast (b \ast c) = a \ast d = e.
+    \]
+    So $(a \ast b) \ast c = a \ast (b \ast c) = e$. This holds for all triples by the cyclic structure.
+    
+    \item \textbf{Identity:} $e$ is the identity since $e \ast x = x \ast e = x$ for all $x \in G$.
+    
+    \item \textbf{Inverses:}
+    \begin{align*}
+        e^{-1} &= e, \\
+        a^{-1} &= d \quad (\text{since } a \ast d = d \ast a = e), \\
+        b^{-1} &= c \quad (\text{since } b \ast c = c \ast b = e), \\
+        c^{-1} &= b, \\
+        d^{-1} &= a.
+    \end{align*}
+    
+    \item \textbf{Commutativity:} The table is symmetric about the diagonal, so $x \ast y = y \ast x$ for all $x, y \in G$.
+\end{enumerate}
+
+\subsection*{Generators}
+
+The group is cyclic. The generators are $a$ and $d$, since:
+\[
+\langle a \rangle = \{ a, a^2 = b, a^3 = c, a^4 = d, a^5 = e \} = G,
+\]
+\[
+\langle d \rangle = \{ d, d^2 = b, d^3 = c, d^4 = a, d^5 = e \} = G.
+\]
+
+\subsection*{Isomorphism to $\mathbb{Z}_5$}
+
+The map $\varphi: G \to \mathbb{Z}_5$ given by:
+\[
+\varphi(e) = 0, \quad \varphi(a) = 1, \quad \varphi(b) = 2, \quad \varphi(c) = 3, \quad \varphi(d) = 4,
+\]
+is a group isomorphism, preserving the operation:
+\[
+\varphi(x \ast y) = \varphi(x) + \varphi(y) \pmod{5}.
+\]
+
+\section*{Finite Group of Order 7 Using Symbols}
+
+Let $G = \{ e, a, b, c, d, f, g \}$ be a set with seven distinct symbols, where $e$ is the identity element. 
+Define the binary operation $\ast$ such that $a$ is a generator of the cyclic group $C_7$:
+
+\[
+a^1 = a, \; a^2 = b, \; a^3 = c, \; a^4 = d, \; a^5 = f, \; a^6 = g, \; a^7 = e.
+\]
+
+\subsection*{Cayley Table}
+
+\[
+\begin{array}{c|ccccccc}
+\ast & e & a & b & c & d & f & g \\
+\hline
+e & e & a & b & c & d & f & g \\
+a & a & b & c & d & f & g & e \\
+b & b & c & d & f & g & e & a \\
+c & c & d & f & g & e & a & b \\
+d & d & f & g & e & a & b & c \\
+f & f & g & e & a & b & c & d \\
+g & g & e & a & b & c & d & f \\
+\end{array}
+\]
+
+\subsection*{Group Properties}
+
+\begin{enumerate}
+    \item \textbf{Closure:} The table shows closure for all pairs in $G$.
+    
+    \item \textbf{Associativity:} Follows from the cyclic group structure. For example:
+    \[
+    (a \ast b) \ast c = c \ast c = d, \quad
+    a \ast (b \ast c) = a \ast d = d.
+    \]
+    
+    \item \textbf{Identity:} $e \ast x = x \ast e = x$ for all $x \in G$.
+    
+    \item \textbf{Inverses:}
+    \begin{align*}
+        e^{-1} &= e, \\
+        a^{-1} &= g \quad (a \ast g = g \ast a = e), \\
+        b^{-1} &= f \quad (b \ast f = f \ast b = e), \\
+        c^{-1} &= d \quad (c \ast d = d \ast c = e), \\
+        d^{-1} &= c, \\
+        f^{-1} &= b, \\
+        g^{-1} &= a.
+    \end{align*}
+    
+    \item \textbf{Commutativity:} The table is symmetric, so the group is abelian.
+\end{enumerate}
+
+\subsection*{Generators}
+
+All non-identity elements except those whose order divides 7 trivially are generators. 
+Since 7 is prime, every non-identity element generates the group:
+
+\[
+\langle a \rangle = \langle b \rangle = \langle c \rangle = \langle d \rangle = \langle f \rangle = \langle g \rangle = G.
+\]
+
+Specifically:
+\begin{align*}
+\langle a \rangle &= \{ a, b, c, d, f, g, e \}, \\
+\langle b \rangle &= \{ b, d, g, c, f, a, e \}, \\
+\langle c \rangle &= \{ c, f, b, g, d, a, e \}, \\
+\langle d \rangle &= \{ d, c, a, f, b, g, e \}, \\
+\langle f \rangle &= \{ f, d, a, b, g, c, e \}, \\
+\langle g \rangle &= \{ g, f, d, c, b, a, e \}.
+\end{align*}
+
+\subsection*{Subgroups}
+
+Since 7 is prime, the only subgroups are:
+\[
+\{ e \} \quad \text{and} \quad G.
+\]
+
+\subsection*{Isomorphism to $\mathbb{Z}_7$}
+
+The map $\varphi: G \to \mathbb{Z}_7$ given by:
+\[
+\varphi(e) = 0, \; \varphi(a) = 1, \; \varphi(b) = 2, \; \varphi(c) = 3, \; 
+\varphi(d) = 4, \; \varphi(f) = 5, \; \varphi(g) = 6,
+\]
+is a group isomorphism with:
+\[
+\varphi(x \ast y) = \varphi(x) + \varphi(y) \pmod{7}.
+\]
+
+\section*{Constructing a Ring from a 7-Element Cyclic Group}
+
+Let $R = \{ 0, a, b, c, d, f, g \}$ with two binary operations:
+\begin{itemize}
+    \item \textbf{Addition} ($+$): The cyclic group operation
+    \item \textbf{Multiplication} ($\cdot$): To be defined to satisfy ring axioms
+\end{itemize}
+
+\subsection*{1. Additive Structure}
+
+The additive group is cyclic of order 7 with $0$ as identity:
+
+\[
+\begin{array}{c|ccccccc}
++ & 0 & a & b & c & d & f & g \\
+\hline
+0 & 0 & a & b & c & d & f & g \\
+a & a & b & c & d & f & g & 0 \\
+b & b & c & d & f & g & 0 & a \\
+c & c & d & f & g & 0 & a & b \\
+d & d & f & g & 0 & a & b & c \\
+f & f & g & 0 & a & b & c & d \\
+g & g & 0 & a & b & c & d & f \\
+\end{array}
+\]
+
+The additive inverses are:
+\[
+-a = g, \quad -b = f, \quad -c = d, \quad -d = c, \quad -f = b, \quad -g = a.
+\]
+
+\subsection*{2. Defining Multiplication via Isomorphism}
+
+Define $\varphi: R \to \mathbb{Z}_7$ by:
+\[
+\varphi(0) = 0, \quad \varphi(a) = 1, \quad \varphi(b) = 2, \quad \varphi(c) = 3, \quad 
+\varphi(d) = 4, \quad \varphi(f) = 5, \quad \varphi(g) = 6.
+\]
+
+Then define multiplication in $R$ as:
+\[
+x \cdot y = \varphi^{-1}\big(\varphi(x) \times \varphi(y) \mod 7\big).
+\]
+
+
+\subsection*{3 Multiplication Table}
+
+Using the isomorphism systematically:
+
+\[
+\begin{array}{c|ccccccc}
+\cdot & 0 & a & b & c & d & f & g \\
+\hline
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+a & 0 & a & b & c & d & f & g \\
+b & 0 & b & d & g & a & c & f \\
+c & 0 & c & g & b & f & a & d \\
+d & 0 & d & a & f & c & g & b \\
+f & 0 & f & c & a & g & d & b \\
+g & 0 & g & f & d & b & c & a \\
+\end{array}
+\]
+
+Verification examples:
+\begin{itemize}
+    \item $b \cdot c = g$ (since $2 \times 3 = 6$)
+    \item $c \cdot c = b$ (since $3 \times 3 = 9 \equiv 2$)
+    \item $d \cdot f = g$ (since $4 \times 5 = 20 \equiv 6$)
+    \item $g \cdot g = a$ (since $6 \times 6 = 36 \equiv 1$)
+\end{itemize}
+
+\subsection*{4. Ring Axioms Verification}
+
+\begin{enumerate}
+    \item $(R, +)$ is an abelian group (shown in additive table).
+    
+    \item Multiplication is associative because multiplication mod 7 is associative.
+    
+    \item Distributive laws hold because they hold in $\mathbb{Z}_7$ under the isomorphism.
+    
+    \item Multiplicative identity: $a$ is the unity since $a \cdot x = x \cdot a = x$ for all $x \in R$.
+\end{enumerate}
+
+\subsection*{5. Field Structure}
+
+Since 7 is prime, $(R, +, \cdot)$ is actually a field. Multiplicative inverses:
+\begin{align*}
+a^{-1} &= a, \\
+b^{-1} &= d \quad (b \cdot d = a), \\
+c^{-1} &= f \quad (c \cdot f = a), \\
+d^{-1} &= b, \\
+f^{-1} &= c, \\
+g^{-1} &= g \quad (g \cdot g = a).
+\end{align*}
+
+\subsection*{6. Summary}
+
+We have constructed the finite field $\mathbb{F}_7$ from the 7-element cyclic group by:
+\begin{enumerate}
+    \item Using the cyclic group as the additive structure
+    \item Defining multiplication via isomorphism to $\mathbb{Z}_7$
+    \item Verifying all field axioms
+\end{enumerate}
+
+The result is a commutative ring with unity where every nonzero element has a multiplicative inverse, i.e., a field with 7 elements.
+
+\section*{Example of a Two-Dimensional Vector Space}
+
+Consider the vector space $V = \mathbb{R}^2$ over the field $\mathbb{R}$.
+
+\subsection*{1. Elements (Vectors)}
+
+Elements of $V$ are ordered pairs of real numbers:
+\[
+\mathbf{v} = \begin{pmatrix} x \\ y \end{pmatrix}, \quad x, y \in \mathbb{R}.
+\]
+
+\subsection*{2. Vector Addition}
+
+For $\mathbf{v}_1 = \begin{pmatrix} x_1 \\ y_1 \end{pmatrix}$ and $\mathbf{v}_2 = \begin{pmatrix} x_2 \\ y_2 \end{pmatrix}$:
+\[
+\mathbf{v}_1 + \mathbf{v}_2 = \begin{pmatrix} x_1 + x_2 \\ y_1 + y_2 \end{pmatrix}.
+\]
+
+\subsection*{3. Scalar Multiplication}
+
+For $\alpha \in \mathbb{R}$ and $\mathbf{v} = \begin{pmatrix} x \\ y \end{pmatrix}$:
+\[
+\alpha \mathbf{v} = \begin{pmatrix} \alpha x \\ \alpha y \end{pmatrix}.
+\]
+
+\subsection*{4. Verification of Vector Space Axioms}
+
+\subsubsection*{Axiom 1: Closure under Addition}
+For any $\mathbf{v}_1, \mathbf{v}_2 \in V$, $\mathbf{v}_1 + \mathbf{v}_2 \in V$ since $(x_1+x_2, y_1+y_2) \in \mathbb{R}^2$.
+
+\subsubsection*{Axiom 2: Commutativity of Addition}
+\[
+\mathbf{v}_1 + \mathbf{v}_2 = \begin{pmatrix} x_1+x_2 \\ y_1+y_2 \end{pmatrix} = 
+\begin{pmatrix} x_2+x_1 \\ y_2+y_1 \end{pmatrix} = \mathbf{v}_2 + \mathbf{v}_1.
+\]
+
+\subsubsection*{Axiom 3: Associativity of Addition}
+\[
+(\mathbf{v}_1 + \mathbf{v}_2) + \mathbf{v}_3 = 
+\begin{pmatrix} (x_1+x_2)+x_3 \\ (y_1+y_2)+y_3 \end{pmatrix} =
+\begin{pmatrix} x_1+(x_2+x_3) \\ y_1+(y_2+y_3) \end{pmatrix} = 
+\mathbf{v}_1 + (\mathbf{v}_2 + \mathbf{v}_3).
+\]
+
+\subsubsection*{Axiom 4: Additive Identity}
+The zero vector is $\mathbf{0} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$:
+\[
+\mathbf{v} + \mathbf{0} = \begin{pmatrix} x+0 \\ y+0 \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} = \mathbf{v}.
+\]
+
+\subsubsection*{Axiom 5: Additive Inverses}
+For $\mathbf{v} = \begin{pmatrix} x \\ y \end{pmatrix}$, the additive inverse is $-\mathbf{v} = \begin{pmatrix} -x \\ -y \end{pmatrix}$:
+\[
+\mathbf{v} + (-\mathbf{v}) = \begin{pmatrix} x+(-x) \\ y+(-y) \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} = \mathbf{0}.
+\]
+
+\subsubsection*{Axiom 6: Closure under Scalar Multiplication}
+For any $\alpha \in \mathbb{R}$ and $\mathbf{v} \in V$, $\alpha\mathbf{v} \in V$ since $(\alpha x, \alpha y) \in \mathbb{R}^2$.
+
+\subsubsection*{Axiom 7: Distributivity of Scalars over Vector Addition}
+\[
+\alpha(\mathbf{v}_1 + \mathbf{v}_2) = \alpha\begin{pmatrix} x_1+x_2 \\ y_1+y_2 \end{pmatrix} = 
+\begin{pmatrix} \alpha(x_1+x_2) \\ \alpha(y_1+y_2) \end{pmatrix} =
+\begin{pmatrix} \alpha x_1 + \alpha x_2 \\ \alpha y_1 + \alpha y_2 \end{pmatrix} = 
+\alpha\mathbf{v}_1 + \alpha\mathbf{v}_2.
+\]
+
+\subsubsection*{Axiom 8: Distributivity of Vectors over Scalar Addition}
+\[
+(\alpha + \beta)\mathbf{v} = \begin{pmatrix} (\alpha+\beta)x \\ (\alpha+\beta)y \end{pmatrix} =
+\begin{pmatrix} \alpha x + \beta x \\ \alpha y + \beta y \end{pmatrix} =
+\alpha\mathbf{v} + \beta\mathbf{v}.
+\]
+
+\subsubsection*{Axiom 9: Compatibility of Scalar Multiplication}
+\[
+\alpha(\beta\mathbf{v}) = \alpha\begin{pmatrix} \beta x \\ \beta y \end{pmatrix} =
+\begin{pmatrix} \alpha(\beta x) \\ \alpha(\beta y) \end{pmatrix} =
+\begin{pmatrix} (\alpha\beta)x \\ (\alpha\beta)y \end{pmatrix} =
+(\alpha\beta)\mathbf{v}.
+\]
+
+\subsubsection*{Axiom 10: Multiplicative Identity}
+\[
+1 \cdot \mathbf{v} = \begin{pmatrix} 1 \cdot x \\ 1 \cdot y \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} = \mathbf{v}.
+\]
+
+\subsection*{5. Basis and Dimension}
+
+A \textbf{basis} for $V$ is:
+\[
+\mathcal{B} = \left\{ \mathbf{e}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \ 
+\mathbf{e}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix} \right\}.
+\]
+
+\textbf{Properties of the basis:}
+\begin{enumerate}
+    \item \textbf{Linear independence:}
+    \[
+    \alpha_1 \mathbf{e}_1 + \alpha_2 \mathbf{e}_2 = \begin{pmatrix} \alpha_1 \\ \alpha_2 \end{pmatrix} = \mathbf{0}
+    \Rightarrow \alpha_1 = \alpha_2 = 0.
+    \]
+    
+    \item \textbf{Spanning:} Any vector $\mathbf{v} = \begin{pmatrix} x \\ y \end{pmatrix}$ can be written as:
+    \[
+    \mathbf{v} = x\mathbf{e}_1 + y\mathbf{e}_2.
+    \]
+\end{enumerate}
+
+Since $\mathcal{B}$ has 2 elements, $\dim(V) = 2$.
+
+\subsection*{6. Geometric Interpretation}
+
+Vectors in $\mathbb{R}^2$ can be visualized as arrows in the plane:
+\begin{itemize}
+    \item \textbf{Vector addition:} Triangle/parallelogram law
+    \item \textbf{Scalar multiplication:} Scaling and direction reversal
+    \item \textbf{Basis vectors:} $\mathbf{e}_1$ points along $x$-axis, $\mathbf{e}_2$ along $y$-axis
+\end{itemize}
+
+\subsection*{7. Example Computations}
+
+Let $\mathbf{u} = \begin{pmatrix} 2 \\ -1 \end{pmatrix}$, $\mathbf{v} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}$, and $\alpha = 3$.
+
+\begin{align*}
+    \mathbf{u} + \mathbf{v} &= \begin{pmatrix} 2+3 \\ -1+4 \end{pmatrix} = \begin{pmatrix} 5 \\ 3 \end{pmatrix}, \\
+    \alpha \mathbf{u} &= \begin{pmatrix} 3\cdot2 \\ 3\cdot(-1) \end{pmatrix} = \begin{pmatrix} 6 \\ -3 \end{pmatrix}, \\
+    -\mathbf{v} &= \begin{pmatrix} -3 \\ -4 \end{pmatrix}.
+\end{align*}
+
+
+\section*{Three-Dimensional Vector Space with Euclidean Structure}
+
+Consider the vector space $V = \mathbb{R}^3$ over the field $\mathbb{R}$.
+
+\subsection*{1. Elements (Vectors)}
+
+Elements of $V$ are ordered triples of real numbers:
+\[
+\mathbf{v} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}, \quad x, y, z \in \mathbb{R}.
+\]
+
+\subsection*{2. Vector Addition}
+
+For $\mathbf{v}_1 = \begin{pmatrix} x_1 \\ y_1 \\ z_1 \end{pmatrix}$ and $\mathbf{v}_2 = \begin{pmatrix} x_2 \\ y_2 \\ z_2 \end{pmatrix}$:
+\[
+\mathbf{v}_1 + \mathbf{v}_2 = \begin{pmatrix} x_1 + x_2 \\ y_1 + y_2 \\ z_1 + z_2 \end{pmatrix}.
+\]
+
+\subsection*{3. Scalar Multiplication}
+
+For $\alpha \in \mathbb{R}$ and $\mathbf{v} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}$:
+\[
+\alpha \mathbf{v} = \begin{pmatrix} \alpha x \\ \alpha y \\ \alpha z \end{pmatrix}.
+\]
+
+\subsection*{4. Standard Basis and Dimension}
+
+The \textbf{standard basis} for $V$ is:
+\[
+\mathcal{B} = \left\{ 
+\mathbf{e}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \ 
+\mathbf{e}_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \ 
+\mathbf{e}_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} 
+\right\}.
+\]
+
+Any vector $\mathbf{v} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}$ can be expressed as:
+\[
+\mathbf{v} = x\mathbf{e}_1 + y\mathbf{e}_2 + z\mathbf{e}_3.
+\]
+
+Since $\mathcal{B}$ has 3 linearly independent vectors, $\dim(V) = 3$.
+
+\subsection*{5. Euclidean Inner Product}
+
+Define the \textbf{Euclidean inner product} (dot product) $\langle \cdot, \cdot \rangle: V \times V \to \mathbb{R}$ by:
+\[
+\langle \mathbf{u}, \mathbf{v} \rangle = \mathbf{u} \cdot \mathbf{v} = x_1x_2 + y_1y_2 + z_1z_2,
+\]
+where $\mathbf{u} = (x_1, y_1, z_1)^T$ and $\mathbf{v} = (x_2, y_2, z_2)^T$.
+
+\textbf{Properties of the inner product:}
+\begin{enumerate}
+    \item \textbf{Symmetry:} $\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle$
+    \item \textbf{Linearity in first argument:} $\langle \alpha\mathbf{u} + \beta\mathbf{w}, \mathbf{v} \rangle = \alpha\langle \mathbf{u}, \mathbf{v} \rangle + \beta\langle \mathbf{w}, \mathbf{v} \rangle$
+    \item \textbf{Positive definiteness:} $\langle \mathbf{v}, \mathbf{v} \rangle \geq 0$, with equality iff $\mathbf{v} = \mathbf{0}$
+\end{enumerate}
+
+\subsection*{6. Euclidean Norm (Length)}
+
+The \textbf{Euclidean norm} $\|\cdot\|: V \to \mathbb{R}_{\geq 0}$ is defined as:
+\[
+\|\mathbf{v}\| = \sqrt{\langle \mathbf{v}, \mathbf{v} \rangle} = \sqrt{x^2 + y^2 + z^2}.
+\]
+
+\textbf{Properties of the norm:}
+\begin{enumerate}
+    \item \textbf{Positive definiteness:} $\|\mathbf{v}\| \geq 0$, and $\|\mathbf{v}\| = 0 \iff \mathbf{v} = \mathbf{0}$
+    \item \textbf{Absolute homogeneity:} $\|\alpha \mathbf{v}\| = |\alpha| \|\mathbf{v}\|$
+    \item \textbf{Triangle inequality:} $\|\mathbf{u} + \mathbf{v}\| \leq \|\mathbf{u}\| + \|\mathbf{v}\|$
+\end{enumerate}
+
+\subsection*{7. Euclidean Metric (Distance)}
+
+The \textbf{Euclidean metric} $d: V \times V \to \mathbb{R}_{\geq 0}$ is defined as:
+\[
+d(\mathbf{u}, \mathbf{v}) = \|\mathbf{u} - \mathbf{v}\| = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2}.
+\]
+
+\textbf{Properties of the metric:}
+\begin{enumerate}
+    \item \textbf{Positive definiteness:} $d(\mathbf{u}, \mathbf{v}) \geq 0$, and $d(\mathbf{u}, \mathbf{v}) = 0 \iff \mathbf{u} = \mathbf{v}$
+    \item \textbf{Symmetry:} $d(\mathbf{u}, \mathbf{v}) = d(\mathbf{v}, \mathbf{u})$
+    \item \textbf{Triangle inequality:} $d(\mathbf{u}, \mathbf{w}) \leq d(\mathbf{u}, \mathbf{v}) + d(\mathbf{v}, \mathbf{w})$
+\end{enumerate}
+
+\subsection*{8. Geometric Relationships}
+
+\textbf{Angle between vectors:} For nonzero $\mathbf{u}, \mathbf{v} \in V$,
+\[
+\cos \theta = \frac{\langle \mathbf{u}, \mathbf{v} \rangle}{\|\mathbf{u}\| \|\mathbf{v}\|}, \quad \theta \in [0, \pi].
+\]
+
+\textbf{Orthogonality:} $\mathbf{u} \perp \mathbf{v} \iff \langle \mathbf{u}, \mathbf{v} \rangle = 0$.
+
+\textbf{Cauchy-Schwarz inequality:}
+\[
+|\langle \mathbf{u}, \mathbf{v} \rangle| \leq \|\mathbf{u}\| \|\mathbf{v}\|.
+\]
+
+\subsection*{9. Example Computations}
+
+Let $\mathbf{u} = \begin{pmatrix} 1 \\ 2 \\ -1 \end{pmatrix}$, $\mathbf{v} = \begin{pmatrix} 3 \\ 0 \\ 4 \end{pmatrix}$, and $\alpha = 2$.
+
+\begin{align*}
+    \mathbf{u} + \mathbf{v} &= \begin{pmatrix} 4 \\ 2 \\ 3 \end{pmatrix}, \\
+    \alpha \mathbf{u} &= \begin{pmatrix} 2 \\ 4 \\ -2 \end{pmatrix}, \\
+    \langle \mathbf{u}, \mathbf{v} \rangle &= 1\cdot3 + 2\cdot0 + (-1)\cdot4 = 3 - 4 = -1, \\
+    \|\mathbf{u}\| &= \sqrt{1^2 + 2^2 + (-1)^2} = \sqrt{1 + 4 + 1} = \sqrt{6}, \\
+    \|\mathbf{v}\| &= \sqrt{3^2 + 0^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5, \\
+    d(\mathbf{u}, \mathbf{v}) &= \sqrt{(1-3)^2 + (2-0)^2 + (-1-4)^2} = \sqrt{4 + 4 + 25} = \sqrt{33}, \\
+    \cos \theta &= \frac{-1}{\sqrt{6} \cdot 5} = -\frac{1}{5\sqrt{6}} \approx -0.0816.
+\end{align*}
+
+\subsection*{10. Matrix Representation}
+
+Vectors can be represented as column matrices. The inner product can be written using matrix transpose:
+\[
+\langle \mathbf{u}, \mathbf{v} \rangle = \mathbf{u}^T \mathbf{v}.
+\]
+
+For our example:
+\[
+\mathbf{u}^T \mathbf{v} = \begin{pmatrix} 1 & 2 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ 0 \\ 4 \end{pmatrix} = -1.
+\]
+
+\subsection*{11. Summary of Structure}
+
+The triple $(\mathbb{R}^3, \langle \cdot, \cdot \rangle, \|\cdot\|)$ forms a:
+\begin{itemize}
+    \item \textbf{Vector space} over $\mathbb{R}$ of dimension 3
+    \item \textbf{Inner product space} with the Euclidean inner product
+    \item \textbf{Normed space} with the Euclidean norm
+    \item \textbf{Metric space} with the Euclidean metric
+    \item \textbf{Euclidean space} $\mathbb{E}^3$ (specifically, a real Hilbert space of finite dimension)
+\end{itemize}
+
+All these structures are compatible: the norm is induced by the inner product, and the metric is induced by the norm.
+
+\section*{Three-Dimensional Vector Space with Taxicab (Manhattan) Metric}
+
+Consider the vector space $V = \mathbb{R}^3$ over the field $\mathbb{R}$.
+
+\subsection*{1. Elements (Vectors)}
+
+Elements of $V$ are ordered triples of real numbers:
+\[
+\mathbf{v} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}, \quad x, y, z \in \mathbb{R}.
+\]
+
+\subsection*{2. Vector Space Operations}
+
+\textbf{Vector addition:}
+\[
+\mathbf{u} + \mathbf{v} = \begin{pmatrix} x_1 + x_2 \\ y_1 + y_2 \\ z_1 + z_2 \end{pmatrix}, \quad
+\mathbf{u} = (x_1, y_1, z_1)^T, \ \mathbf{v} = (x_2, y_2, z_2)^T.
+\]
+
+\textbf{Scalar multiplication:}
+\[
+\alpha \mathbf{v} = \begin{pmatrix} \alpha x \\ \alpha y \\ \alpha z \end{pmatrix}, \quad \alpha \in \mathbb{R}.
+\]
+
+\subsection*{3. Standard Basis and Dimension}
+
+The \textbf{standard basis} for $V$ is:
+\[
+\mathcal{B} = \left\{ 
+\mathbf{e}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \ 
+\mathbf{e}_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \ 
+\mathbf{e}_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} 
+\right\}.
+\]
+
+$\dim(V) = 3$ since $\mathcal{B}$ has 3 linearly independent vectors.
+
+\subsection*{4. Taxicab Norm ($\ell^1$ Norm)}
+
+The \textbf{taxicab norm} (or Manhattan norm, $\ell^1$ norm) $\|\cdot\|_1: V \to \mathbb{R}_{\geq 0}$ is defined as:
+\[
+\|\mathbf{v}\|_1 = |x| + |y| + |z|.
+\]
+
+\textbf{Properties:}
+\begin{enumerate}
+    \item \textbf{Positive definiteness:} $\|\mathbf{v}\|_1 \geq 0$, and $\|\mathbf{v}\|_1 = 0 \iff \mathbf{v} = \mathbf{0}$
+    \item \textbf{Absolute homogeneity:} $\|\alpha \mathbf{v}\|_1 = |\alpha| \|\mathbf{v}\|_1$
+    \item \textbf{Triangle inequality:} $\|\mathbf{u} + \mathbf{v}\|_1 \leq \|\mathbf{u}\|_1 + \|\mathbf{v}\|_1$
+\end{enumerate}
+
+\subsection*{5. Taxicab Metric ($\ell^1$ Metric)}
+
+The \textbf{taxicab metric} $d_1: V \times V \to \mathbb{R}_{\geq 0}$ is defined as:
+\[
+d_1(\mathbf{u}, \mathbf{v}) = \|\mathbf{u} - \mathbf{v}\|_1 = |x_1 - x_2| + |y_1 - y_2| + |z_1 - z_2|.
+\]
+
+\textbf{Properties:}
+\begin{enumerate}
+    \item \textbf{Positive definiteness:} $d_1(\mathbf{u}, \mathbf{v}) \geq 0$, and $d_1(\mathbf{u}, \mathbf{v}) = 0 \iff \mathbf{u} = \mathbf{v}$
+    \item \textbf{Symmetry:} $d_1(\mathbf{u}, \mathbf{v}) = d_1(\mathbf{v}, \mathbf{u})$
+    \item \textbf{Triangle inequality:} $d_1(\mathbf{u}, \mathbf{w}) \leq d_1(\mathbf{u}, \mathbf{v}) + d_1(\mathbf{v}, \mathbf{w})$
+\end{enumerate}
+
+\subsection*{6. Geometric Interpretation}
+
+The taxicab metric gets its name from the grid-like streets of Manhattan:
+\begin{itemize}
+    \item Distance corresponds to the shortest path along grid lines (axes-aligned movement)
+    \item In $\mathbb{R}^3$, think of moving through a 3D grid of perpendicular corridors
+    \item The distance between two points is the sum of absolute differences in each coordinate
+\end{itemize}
+
+\textbf{Unit ball:} The set $\{\mathbf{v} \in \mathbb{R}^3 : \|\mathbf{v}\|_1 \leq 1\}$ is an octahedron (diamond shape), not a sphere.
+
+\subsection*{7. No Standard Inner Product}
+
+Unlike the Euclidean case, the taxicab norm \textbf{is not induced by an inner product}. This can be shown by checking the \textbf{parallelogram law}:
+
+For $\mathbf{u} = (1,0,0)^T$ and $\mathbf{v} = (0,1,0)^T$:
+\begin{align*}
+\|\mathbf{u} + \mathbf{v}\|_1^2 + \|\mathbf{u} - \mathbf{v}\|_1^2 &= (|1+0|+|0+1|+|0+0|)^2 + (|1-0|+|0-1|+|0-0|)^2 \\
+&= (1+1+0)^2 + (1+1+0)^2 = 4 + 4 = 8, \\
+2(\|\mathbf{u}\|_1^2 + \|\mathbf{v}\|_1^2) &= 2((1+0+0)^2 + (0+1+0)^2) = 2(1 + 1) = 4.
+\end{align*}
+Since $8 \neq 4$, the parallelogram law fails. Therefore, no inner product can generate $\|\cdot\|_1$.
+
+\subsection*{8. Comparison with Euclidean Metric}
+
+Let $\|\cdot\|_2$ be the Euclidean norm and $d_2$ the Euclidean metric. For any $\mathbf{u}, \mathbf{v} \in \mathbb{R}^3$:
+
+\textbf{Inequalities:}
+\[
+\frac{1}{\sqrt{3}} \|\mathbf{v}\|_1 \leq \|\mathbf{v}\|_2 \leq \|\mathbf{v}\|_1,
+\]
+\[
+\frac{1}{\sqrt{3}} d_1(\mathbf{u}, \mathbf{v}) \leq d_2(\mathbf{u}, \mathbf{v}) \leq d_1(\mathbf{u}, \mathbf{v}).
+\]
+
+These show the metrics are \textbf{equivalent} (generate the same topology).
+
+\subsection*{9. Example Computations}
+
+Let $\mathbf{u} = \begin{pmatrix} 1 \\ 2 \\ -1 \end{pmatrix}$, $\mathbf{v} = \begin{pmatrix} 3 \\ 0 \\ 4 \end{pmatrix}$, and $\alpha = 2$.
+
+\begin{align*}
+    \mathbf{u} + \mathbf{v} &= \begin{pmatrix} 4 \\ 2 \\ 3 \end{pmatrix}, \\
+    \alpha \mathbf{u} &= \begin{pmatrix} 2 \\ 4 \\ -2 \end{pmatrix}, \\
+    \|\mathbf{u}\|_1 &= |1| + |2| + |-1| = 1 + 2 + 1 = 4, \\
+    \|\mathbf{v}\|_1 &= |3| + |0| + |4| = 3 + 0 + 4 = 7, \\
+    \|\mathbf{u} + \mathbf{v}\|_1 &= |4| + |2| + |3| = 4 + 2 + 3 = 9, \\
+    d_1(\mathbf{u}, \mathbf{v}) &= |1-3| + |2-0| + |-1-4| = 2 + 2 + 5 = 9.
+\end{align*}
+
+Verify triangle inequality:
+\[
+\|\mathbf{u} + \mathbf{v}\|_1 = 9 \leq \|\mathbf{u}\|_1 + \|\mathbf{v}\|_1 = 4 + 7 = 11 \quad \checkmark
+\]
+
+\subsection*{10. Different Paths, Same Distance}
+
+A key feature: Many different paths have the same taxicab distance between two points.
+
+Between $\mathbf{u} = (0,0,0)^T$ and $\mathbf{v} = (2,3,1)^T$:
+\[
+d_1(\mathbf{u}, \mathbf{v}) = 2 + 3 + 1 = 6.
+\]
+
+Possible minimal paths (moving only parallel to axes):
+\begin{itemize}
+    \item $x: +2, y: +3, z: +1$ (in any order)
+    \item Example: $(0,0,0) \to (2,0,0) \to (2,3,0) \to (2,3,1)$
+    \item Alternative: $(0,0,0) \to (0,3,0) \to (2,3,0) \to (2,3,1)$
+    \item Number of minimal paths: $\frac{6!}{2!3!1!} = 60$ different orderings
+\end{itemize}
+
+\subsection*{11. Applications}
+
+The taxicab metric is useful in:
+\begin{itemize}
+    \item \textbf{City planning:} Distance along grid-like street networks
+    \textbf{Computer science:} Pattern recognition, image processing
+    \item \textbf{Optimization:} Linear programming (L1 regularization)
+    \item \textbf{Geometry:} Studying different notions of distance
+\end{itemize}
+
+\subsection*{12. Summary}
+
+The structure $(\mathbb{R}^3, \|\cdot\|_1, d_1)$ forms:
+\begin{itemize}
+    \item A \textbf{normed vector space} but not an inner product space
+    \item A \textbf{metric space} with the taxicab metric
+    \item A space with \textbf{different geometry} than Euclidean space
+    \item A space where distance has a \textbf{combinatorial interpretation} (sum of coordinate differences)
+\end{itemize}
+
+While it shares the same underlying vector space structure as Euclidean $\mathbb{R}^3$, the taxicab metric induces different geometric properties, most notably the failure of the parallelogram law and the diamond-shaped unit ball.
+
+\section*{The Vector Space $\ell^2$: Square-Summable Infinite Sequences}
+
+\subsection*{1. Definition of $\ell^2$}
+
+The space $\ell^2$ (pronounced "little ell-two") is defined as:
+\[
+\ell^2 = \left\{ (a_n)_{n=1}^\infty \mid a_n \in \mathbb{R} \ \text{and} \ \sum_{n=1}^\infty |a_n|^2 < \infty \right\}.
+\]
+Equivalently, $\ell^2 = \left\{ \mathbf{a} = (a_1, a_2, a_3, \dots) \mid \|\mathbf{a}\|_2 < \infty \right\}$, where
+\[
+\|\mathbf{a}\|_2 = \left( \sum_{n=1}^\infty |a_n|^2 \right)^{1/2}.
+\]
+
+\subsection*{2. Vector Space Structure}
+
+$\ell^2$ is a vector space over $\mathbb{R}$ with:
+
+\textbf{Vector addition:} For $\mathbf{a} = (a_n), \mathbf{b} = (b_n) \in \ell^2$,
+\[
+\mathbf{a} + \mathbf{b} = (a_1 + b_1, a_2 + b_2, a_3 + b_3, \dots).
+\]
+
+\textbf{Scalar multiplication:} For $\alpha \in \mathbb{R}$ and $\mathbf{a} \in \ell^2$,
+\[
+\alpha\mathbf{a} = (\alpha a_1, \alpha a_2, \alpha a_3, \dots).
+\]
+
+\textbf{Zero vector:} $\mathbf{0} = (0, 0, 0, \dots)$.
+
+\subsection*{3. Closure Under Operations}
+
+\textbf{Closure under addition:} By Minkowski's inequality for sequences:
+\[
+\left( \sum_{n=1}^\infty |a_n + b_n|^2 \right)^{1/2} \leq \left( \sum_{n=1}^\infty |a_n|^2 \right)^{1/2} + \left( \sum_{n=1}^\infty |b_n|^2 \right)^{1/2} < \infty.
+\]
+
+\textbf{Closure under scalar multiplication:}
+\[
+\sum_{n=1}^\infty |\alpha a_n|^2 = |\alpha|^2 \sum_{n=1}^\infty |a_n|^2 < \infty.
+\]
+
+\subsection*{4. Inner Product Structure}
+
+Define the $\ell^2$ inner product $\langle \cdot, \cdot \rangle: \ell^2 \times \ell^2 \to \mathbb{R}$ by:
+\[
+\langle \mathbf{a}, \mathbf{b} \rangle = \sum_{n=1}^\infty a_n b_n.
+\]
+
+\textbf{Well-definedness:} By Cauchy-Schwarz for sequences:
+\[
+\sum_{n=1}^\infty |a_n b_n| \leq \left( \sum_{n=1}^\infty |a_n|^2 \right)^{1/2} \left( \sum_{n=1}^\infty |b_n|^2 \right)^{1/2} < \infty.
+\]
+
+\textbf{Properties:}
+\begin{enumerate}
+    \item $\langle \mathbf{a}, \mathbf{b} \rangle = \langle \mathbf{b}, \mathbf{a} \rangle$
+    \item $\langle \alpha\mathbf{a} + \beta\mathbf{c}, \mathbf{b} \rangle = \alpha\langle \mathbf{a}, \mathbf{b} \rangle + \beta\langle \mathbf{c}, \mathbf{b} \rangle$
+    \item $\langle \mathbf{a}, \mathbf{a} \rangle \geq 0$, and $\langle \mathbf{a}, \mathbf{a} \rangle = 0 \iff \mathbf{a} = \mathbf{0}$
+\end{enumerate}
+
+\subsection*{5. Norm and Metric}
+
+The $\ell^2$ norm is induced by the inner product:
+\[
+\|\mathbf{a}\|_2 = \sqrt{\langle \mathbf{a}, \mathbf{a} \rangle} = \left( \sum_{n=1}^\infty |a_n|^2 \right)^{1/2}.
+\]
+
+The $\ell^2$ metric is:
+\[
+d_2(\mathbf{a}, \mathbf{b}) = \|\mathbf{a} - \mathbf{b}\|_2 = \left( \sum_{n=1}^\infty |a_n - b_n|^2 \right)^{1/2}.
+\]
+
+\subsection*{6. Standard Orthonormal Basis}
+
+The \textbf{standard basis} for $\ell^2$ is:
+\[
+\{\mathbf{e}_k\}_{k=1}^\infty \quad \text{where} \quad \mathbf{e}_k = (0, \dots, 0, 1, 0, \dots)
+\]
+with 1 in the $k$th position.
+
+\textbf{Orthonormality:}
+\[
+\langle \mathbf{e}_i, \mathbf{e}_j \rangle = \delta_{ij} = \begin{cases}
+1 & \text{if } i = j, \\
+0 & \text{if } i \neq j.
+\end{cases}
+\]
+
+\subsection*{7. Examples of Sequences in $\ell^2$}
+
+\begin{enumerate}
+    \item \textbf{Geometric sequence:} $\mathbf{a} = \left(1, \frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \dots\right)$
+    \[
+    \|\mathbf{a}\|_2^2 = \sum_{n=0}^\infty \left(\frac{1}{2^n}\right)^2 = \sum_{n=0}^\infty \frac{1}{4^n} = \frac{1}{1 - \frac{1}{4}} = \frac{4}{3}.
+    \]
+    
+    \item \textbf{$p$-sequence:} $\mathbf{a} = \left(1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \dots\right)$
+    \[
+    \|\mathbf{a}\|_2^2 = \sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6} < \infty.
+    \]
+    
+    \item \textbf{Exponential decay:} $\mathbf{a} = \left(e^{-1}, e^{-2}, e^{-3}, \dots\right)$
+    \[
+    \|\mathbf{a}\|_2^2 = \sum_{n=1}^\infty e^{-2n} = \frac{e^{-2}}{1 - e^{-2}} = \frac{1}{e^2 - 1}.
+    \]
+\end{enumerate}
+
+\subsection*{8. Example of Sequence Not in $\ell^2$}
+
+\[
+\mathbf{a} = \left(1, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{3}}, \frac{1}{\sqrt{4}}, \dots\right)
+\]
+\[
+\|\mathbf{a}\|_2^2 = \sum_{n=1}^\infty \frac{1}{n} = \infty.
+\]
+
+\subsection*{9. Subspaces of $\ell^2$}
+
+\begin{enumerate}
+    \item \textbf{Finite support sequences:}
+    \[
+    c_{00} = \{\mathbf{a} \in \ell^2 \mid a_n = 0 \text{ for all but finitely many } n\}.
+    \]
+    This is dense in $\ell^2$ but not closed.
+    
+    \item \textbf{$\ell^2(\mathbb{Z})$:} Bi-infinite sequences $\{a_n\}_{n=-\infty}^\infty$ with $\sum_{n=-\infty}^\infty |a_n|^2 < \infty$.
+\end{enumerate}
+
+\subsection*{10. Coordinate Representation}
+
+Every $\mathbf{a} \in \ell^2$ can be written as:
+\[
+\mathbf{a} = \sum_{k=1}^\infty a_k \mathbf{e}_k,
+\]
+where the series converges in $\ell^2$ norm:
+\[
+\left\| \mathbf{a} - \sum_{k=1}^n a_k \mathbf{e}_k \right\|_2 = \left( \sum_{k=n+1}^\infty |a_k|^2 \right)^{1/2} \to 0.
+\]
+
+\subsection*{11. Completeness: Hilbert Space}
+
+$\ell^2$ is \textbf{complete}: every Cauchy sequence converges in $\ell^2$.
+
+\textbf{Proof sketch:} Let $\{\mathbf{a}^{(m)}\}_{m=1}^\infty$ be Cauchy, where $\mathbf{a}^{(m)} = (a_1^{(m)}, a_2^{(m)}, \dots)$.
+\begin{enumerate}
+    \item For each fixed $k$, $\{a_k^{(m)}\}_{m=1}^\infty$ is Cauchy in $\mathbb{R}$, so converges to some $a_k$.
+    \item Define $\mathbf{a} = (a_1, a_2, \dots)$.
+    \item Show $\mathbf{a} \in \ell^2$ and $\|\mathbf{a}^{(m)} - \mathbf{a}\|_2 \to 0$.
+\end{enumerate}
+
+Thus $(\ell^2, \langle \cdot, \cdot \rangle)$ is a \textbf{Hilbert space}.
+
+\subsection*{12. Isometry with $L^2([0,1])$}
+
+There is a natural isometric isomorphism between $\ell^2$ and $L^2([0,1])$ via Fourier coefficients.
+
+\textbf{Fourier transform:} For $f \in L^2([0,1])$ with Fourier coefficients:
+\[
+c_n = \int_0^1 f(x)e^{-2\pi i n x} \, dx,
+\]
+we have $\{c_n\} \in \ell^2(\mathbb{C})$ and $\|f\|_{L^2} = \|\{c_n\}\|_{\ell^2}$.
+
+\subsection*{13. Example Computations}
+
+Let $\mathbf{a} = \left(1, \frac{1}{2}, \frac{1}{4}, \dots\right)$ and $\mathbf{b} = \left(1, 0, \frac{1}{9}, 0, \frac{1}{25}, \dots\right)$ (nonzero at odd squares).
+
+\textbf{Inner product:}
+\[
+\langle \mathbf{a}, \mathbf{b} \rangle = 1\cdot1 + \frac{1}{2}\cdot0 + \frac{1}{4}\cdot\frac{1}{9} + \frac{1}{8}\cdot0 + \cdots = 1 + \frac{1}{36} + \frac{1}{576} + \cdots.
+\]
+
+\textbf{Norms:}
+\[
+\|\mathbf{a}\|_2 = \sqrt{\frac{4}{3}} \approx 1.155, \quad \|\mathbf{b}\|_2 = \sqrt{\sum_{k=1}^\infty \frac{1}{(2k-1)^4}} = \sqrt{\frac{\pi^4}{96}} \approx 1.007.
+\]
+
+\textbf{Distance:}
+\[
+d_2(\mathbf{a}, \mathbf{b}) = \left( \sum_{n=1}^\infty |a_n - b_n|^2 \right)^{1/2}.
+\]
+
+\subsection*{14. Applications}
+
+\begin{itemize}
+    \item \textbf{Quantum mechanics:} State vectors in infinite-dimensional Hilbert spaces
+    \item \textbf{Signal processing:} Discrete-time signals with finite energy
+    \item \textbf{Statistics:} Random variables with finite variance form an $\ell^2$ space
+    \item \textbf{Numerical analysis:} Solution spaces for infinite systems of equations
+\end{itemize}
+
+\subsection*{15. Comparison with Other Sequence Spaces}
+
+\[
+\begin{array}{c|c|c}
+\text{Space} & \text{Condition} & \text{Properties} \\
+\hline
+\ell^2 & \sum |a_n|^2 < \infty & \text{Hilbert space} \\
+\ell^1 & \sum |a_n| < \infty & \text{Complete normed space, not Hilbert} \\
+\ell^\infty & \sup |a_n| < \infty & \text{Banach space, not Hilbert} \\
+c_0 & \lim_{n\to\infty} a_n = 0 & \text{Closed subspace of $\ell^\infty$}
+\end{array}
+\]
+
+\subsection*{16. Summary}
+
+$\ell^2$ is:
+\begin{itemize}
+    \item The prototypical \textbf{infinite-dimensional Hilbert space}
+    \item The \textbf{completion} of finite-dimensional $\mathbb{R}^n$ spaces
+    \item \textbf{Isomorphic} to all separable Hilbert spaces
+    \item The natural setting for \textbf{infinite series} with square-summable coefficients
+    \item \textbf{Different} from finite-dimensional spaces: closed bounded sets are not compact, unit ball is not compact, etc.
+\end{itemize}
+
+This space demonstrates how the geometric structure of $\mathbb{R}^n$ extends beautifully to infinite dimensions while preserving the essential properties of an inner product space.
+
+
+
+
+\section*{The Vector Space of Square-Integrable Real Functions}
+
+\subsection*{1. Definition of $L^2([a,b])$}
+
+Let $[a,b] \subset \mathbb{R}$ be a closed interval. Define:
+\[
+L^2([a,b]) = \left\{ f: [a,b] \to \mathbb{R} \ \middle|\ \int_a^b |f(x)|^2 \, dx < \infty \right\}.
+\]
+More precisely, these are equivalence classes of functions, where $f \sim g$ if $f = g$ almost everywhere (i.e., except on a set of measure zero).
+
+\subsection*{2. Vector Space Structure}
+
+$L^2([a,b])$ is a vector space over $\mathbb{R}$ with:
+
+\textbf{Vector addition:} For $f, g \in L^2([a,b])$,
+\[
+(f + g)(x) = f(x) + g(x) \quad \text{for all } x \in [a,b].
+\]
+
+\textbf{Scalar multiplication:} For $\alpha \in \mathbb{R}$ and $f \in L^2([a,b])$,
+\[
+(\alpha f)(x) = \alpha f(x) \quad \text{for all } x \in [a,b].
+\]
+
+\textbf{Zero vector:} The function $0(x) = 0$ for all $x \in [a,b]$.
+
+\subsection*{3. Verification of Vector Space Axioms}
+
+\textbf{Closure under addition:} For $f, g \in L^2([a,b])$, by Minkowski's inequality:
+\[
+\left(\int_a^b |f(x) + g(x)|^2 \, dx\right)^{1/2} \leq \left(\int_a^b |f(x)|^2 \, dx\right)^{1/2} + \left(\int_a^b |g(x)|^2 \, dx\right)^{1/2} < \infty.
+\]
+Thus $f + g \in L^2([a,b])$.
+
+\textbf{Closure under scalar multiplication:} For $\alpha \in \mathbb{R}$ and $f \in L^2([a,b])$:
+\[
+\int_a^b |\alpha f(x)|^2 \, dx = |\alpha|^2 \int_a^b |f(x)|^2 \, dx < \infty.
+\]
+Thus $\alpha f \in L^2([a,b])$.
+
+The other axioms (associativity, commutativity, distributivity, etc.) follow from pointwise properties of functions and real numbers.
+
+\subsection*{4. Inner Product Structure}
+
+Define the \textbf{$L^2$ inner product} $\langle \cdot, \cdot \rangle: L^2([a,b]) \times L^2([a,b]) \to \mathbb{R}$ by:
+\[
+\langle f, g \rangle = \int_a^b f(x)g(x) \, dx.
+\]
+
+\textbf{Properties:}
+\begin{enumerate}
+    \item \textbf{Symmetry:} $\langle f, g \rangle = \langle g, f \rangle$
+    \item \textbf{Linearity:} $\langle \alpha f + \beta h, g \rangle = \alpha\langle f, g \rangle + \beta\langle h, g \rangle$
+    \item \textbf{Positive definiteness:} $\langle f, f \rangle \geq 0$, and $\langle f, f \rangle = 0 \iff f = 0$ almost everywhere
+\end{enumerate}
+
+\subsection*{5. Norm Structure}
+
+The \textbf{$L^2$ norm} is induced by the inner product:
+\[
+\|f\|_{L^2} = \sqrt{\langle f, f \rangle} = \left( \int_a^b |f(x)|^2 \, dx \right)^{1/2}.
+\]
+
+\textbf{Cauchy-Schwarz inequality:}
+\[
+|\langle f, g \rangle| \leq \|f\|_{L^2} \|g\|_{L^2}.
+\]
+
+\subsection*{6. Metric Structure}
+
+The \textbf{$L^2$ metric} is induced by the norm:
+\[
+d_{L^2}(f, g) = \|f - g\|_{L^2} = \left( \int_a^b |f(x) - g(x)|^2 \, dx \right)^{1/2}.
+\]
+
+This is the \textbf{mean square distance} between functions.
+
+\subsection*{7. Examples of Functions in $L^2([0,1])$}
+
+\begin{enumerate}
+    \item \textbf{Polynomials:} $p(x) = x^n$ for any $n \geq 0$:
+    \[
+    \int_0^1 |x^n|^2 \, dx = \int_0^1 x^{2n} \, dx = \frac{1}{2n+1} < \infty.
+    \]
+    
+    \item \textbf{Trigonometric functions:} $\sin(n\pi x)$, $\cos(n\pi x)$:
+    \[
+    \int_0^1 |\sin(n\pi x)|^2 \, dx = \frac{1}{2} < \infty.
+    \]
+    
+    \item \textbf{Continuous functions on $[0,1]$:} All continuous functions on a closed interval are in $L^2([0,1])$.
+    
+    \item \textbf{Square-integrable but discontinuous:}
+    \[
+    f(x) = \begin{cases}
+    1/\sqrt{x} & \text{if } 0 < x \leq 1 \\
+    0 & \text{if } x = 0
+    \end{cases}
+    \]
+    \[
+    \int_0^1 |f(x)|^2 \, dx = \int_0^1 \frac{1}{x} \, dx = \infty \quad \text{Wait, this diverges!}
+    \]
+    Actually, $1/\sqrt{x} \notin L^2([0,1])$. A better example:
+    \[
+    f(x) = \begin{cases}
+    x^{-1/4} & \text{if } 0 < x \leq 1 \\
+    0 & \text{if } x = 0
+    \end{cases}
+    \]
+    \[
+    \int_0^1 |x^{-1/4}|^2 \, dx = \int_0^1 x^{-1/2} \, dx = 2 < \infty.
+    \]
+\end{enumerate}
+
+\subsection*{8. Counterexample: Function Not in $L^2([0,1])$}
+
+\[
+f(x) = \begin{cases}
+\frac{1}{x} & \text{if } 0 < x \leq 1 \\
+0 & \text{if } x = 0
+\end{cases}
+\]
+\[
+\int_0^1 \left|\frac{1}{x}\right|^2 \, dx = \int_0^1 \frac{1}{x^2} \, dx = \infty.
+\]
+Thus $f \notin L^2([0,1])$.
+
+\subsection*{9. Orthonormal Basis: Fourier Basis}
+
+For $L^2([-\pi, \pi])$, an orthonormal basis is:
+\[
+\left\{ \frac{1}{\sqrt{2\pi}}, \frac{\sin(nx)}{\sqrt{\pi}}, \frac{\cos(nx)}{\sqrt{\pi}} \right\}_{n=1}^{\infty}.
+\]
+
+\textbf{Orthonormality:}
+\begin{align*}
+\left\langle \frac{1}{\sqrt{2\pi}}, \frac{1}{\sqrt{2\pi}} \right\rangle &= 1, \\
+\left\langle \frac{\sin(nx)}{\sqrt{\pi}}, \frac{\sin(mx)}{\sqrt{\pi}} \right\rangle &= \delta_{nm}, \\
+\left\langle \frac{\sin(nx)}{\sqrt{\pi}}, \frac{\cos(mx)}{\sqrt{\pi}} \right\rangle &= 0.
+\end{align*}
+
+\textbf{Fourier series expansion:} Any $f \in L^2([-\pi, \pi])$ can be written as:
+\[
+f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left[ a_n \cos(nx) + b_n \sin(nx) \right],
+\]
+where the series converges in the $L^2$ norm.
+
+\subsection*{10. Infinite Dimensionality}
+
+$L^2([a,b])$ is \textbf{infinite-dimensional}. One way to see this: the set
+\[
+\{1, x, x^2, x^3, \dots\}
+\]
+is linearly independent and infinite.
+
+\textbf{Dimension:} $\dim(L^2([a,b])) = \aleph_1$ (the cardinality of the continuum).
+
+\subsection*{11. Completeness: Hilbert Space Structure}
+
+$L^2([a,b])$ is \textbf{complete} with respect to the $L^2$ norm: every Cauchy sequence converges to an $L^2$ function.
+
+\textbf{Theorem:} $(L^2([a,b]), \langle \cdot, \cdot \rangle)$ is a \textbf{Hilbert space}.
+
+\subsection*{12. Example Computation}
+
+Let $f(x) = x$ and $g(x) = x^2$ on $[0,1]$.
+
+\textbf{Inner product:}
+\[
+\langle f, g \rangle = \int_0^1 x \cdot x^2 \, dx = \int_0^1 x^3 \, dx = \frac{1}{4}.
+\]
+
+\textbf{Norms:}
+\begin{align*}
+\|f\|_{L^2} &= \left( \int_0^1 x^2 \, dx \right)^{1/2} = \left( \frac{1}{3} \right)^{1/2} = \frac{1}{\sqrt{3}}, \\
+\|g\|_{L^2} &= \left( \int_0^1 x^4 \, dx \right)^{1/2} = \left( \frac{1}{5} \right)^{1/2} = \frac{1}{\sqrt{5}}.
+\end{align*}
+
+\textbf{Cauchy-Schwarz check:}
+\[
+|\langle f, g \rangle| = \frac{1}{4} \approx 0.25 \leq \frac{1}{\sqrt{3}} \cdot \frac{1}{\sqrt{5}} = \frac{1}{\sqrt{15}} \approx 0.258 \quad \checkmark
+\]
+
+\textbf{Metric:}
+\[
+d_{L^2}(f, g) = \left( \int_0^1 |x - x^2|^2 \, dx \right)^{1/2} = \left( \int_0^1 (x^2 - 2x^3 + x^4) \, dx \right)^{1/2} = \left( \frac{1}{3} - \frac{1}{2} + \frac{1}{5} \right)^{1/2} = \left( \frac{1}{30} \right)^{1/2} = \frac{1}{\sqrt{30}}.
+\]
+
+
+
+\subsection*{13. Summary}
+
+$L^2([a,b])$ is:
+\begin{itemize}
+    \item An \textbf{infinite-dimensional vector space} over $\mathbb{R}$
+    \item An \textbf{inner product space} with $\langle f, g \rangle = \int_a^b fg$
+    \item A \textbf{Hilbert space} (complete inner product space)
+    \item The \textbf{prototypical example} of a function space in analysis
+    \item \textbf{Not} a space of all functions, but only those with finite $L^2$ norm
+\end{itemize}
+
+This example shows how vector space concepts extend from finite dimensions ($\mathbb{R}^n$) to infinite-dimensional function spaces, with integration replacing summation.
+
+
+\section*{Cauchy Sequences in Inner Product Spaces}
+
+\subsection*{1. Definition of a Cauchy Sequence}
+
+Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space with induced norm $\|x\| = \sqrt{\langle x, x \rangle}$. A sequence $\{x_n\}_{n=1}^\infty$ in $V$ is called a \textbf{Cauchy sequence} if:
+
+\[
+\forall \epsilon > 0, \ \exists N \in \mathbb{N} \text{ such that } \forall m, n \geq N: \|x_m - x_n\| < \epsilon.
+\]
+
+Equivalently,
+\[
+\lim_{m,n \to \infty} \|x_m - x_n\| = 0.
+\]
+
+\subsection*{2. Basic Properties}
+
+\begin{enumerate}
+    \item \textbf{Every convergent sequence is Cauchy:} If $x_n \to x$, then
+    \[
+    \|x_m - x_n\| \leq \|x_m - x\| + \|x_n - x\| \to 0.
+    \]
+    
+    \item \textbf{Cauchy sequences are bounded:} There exists $M > 0$ such that $\|x_n\| \leq M$ for all $n$.
+    
+    \item \textbf{Uniqueness of limit:} If a Cauchy sequence converges, its limit is unique.
+\end{enumerate}
+
+\subsection*{3. Complete Inner Product Spaces (Hilbert Spaces)}
+
+An inner product space is called \textbf{complete} (a \textbf{Hilbert space}) if every Cauchy sequence converges to an element of $V$.
+
+\textbf{Examples:}
+\begin{itemize}
+    \item $\mathbb{R}^n$ with standard inner product: Complete (finite-dimensional)
+    \item $\ell^2$: Space of square-summable sequences: Complete
+    \item $L^2([a,b])$: Space of square-integrable functions: Complete
+    \item $C([a,b])$ with $L^2$ inner product: \textbf{Not complete}
+\end{itemize}
+
+\subsection*{4. Example 1: Cauchy Sequence in $\mathbb{R}^n$}
+
+In $\mathbb{R}^3$ with standard inner product, consider:
+\[
+x_n = \left( 1 + \frac{1}{n}, \ \frac{2}{n^2}, \ \sin\left(\frac{1}{n}\right) \right).
+\]
+
+\textbf{Check Cauchy property:} For $m > n$,
+\begin{align*}
+\|x_m - x_n\|^2 &= \left(\frac{1}{n} - \frac{1}{m}\right)^2 + \left(\frac{2}{n^2} - \frac{2}{m^2}\right)^2 + \left(\sin\left(\frac{1}{n}\right) - \sin\left(\frac{1}{m}\right)\right)^2 \\
+&\leq \left(\frac{1}{n} - \frac{1}{m}\right)^2 + 4\left(\frac{1}{n^4} + \frac{1}{m^4}\right) + \left(\frac{1}{n} - \frac{1}{m}\right)^2 \to 0.
+\end{align*}
+Converges to $x = (1, 0, 0)$.
+
+\subsection*{5. Example 2: Cauchy Sequence in $\ell^2$}
+
+Let $\ell^2 = \left\{ (a_n)_{n=1}^\infty : \sum_{n=1}^\infty |a_n|^2 < \infty \right\}$ with inner product $\langle a, b \rangle = \sum_{n=1}^\infty a_n b_n$.
+
+Consider the sequence $\{x^{(k)}\}_{k=1}^\infty$ where:
+\[
+x^{(k)} = \left(1, \frac{1}{2}, \frac{1}{3}, \dots, \frac{1}{k}, 0, 0, \dots\right).
+\]
+
+\textbf{Check Cauchy property:} For $m > n$,
+\begin{align*}
+\|x^{(m)} - x^{(n)}\|^2 &= \sum_{j=n+1}^m \frac{1}{j^2} \leq \sum_{j=n+1}^\infty \frac{1}{j^2}.
+\end{align*}
+Since $\sum_{j=1}^\infty \frac{1}{j^2}$ converges, $\sum_{j=n+1}^\infty \frac{1}{j^2} \to 0$ as $n \to \infty$.
+
+Converges to $x = \left(1, \frac{1}{2}, \frac{1}{3}, \dots\right) \in \ell^2$.
+
+\subsection*{6. Example 3: Non-Convergent Cauchy Sequence in $C([0,1])$}
+
+Consider $C([0,1])$ with $L^2$ inner product $\langle f, g \rangle = \int_0^1 f(x)g(x) \, dx$.
+
+Define:
+\[
+f_n(x) = \begin{cases}
+0 & \text{if } 0 \leq x \leq \frac{1}{2} - \frac{1}{n} \\
+n\left(x - \frac{1}{2} + \frac{1}{n}\right) & \text{if } \frac{1}{2} - \frac{1}{n} \leq x \leq \frac{1}{2} \\
+1 & \text{if } \frac{1}{2} \leq x \leq 1
+\end{cases}
+\]
+
+\textbf{Check Cauchy property:} For $m > n$,
+\[
+\|f_m - f_n\|_{L^2}^2 = \int_0^1 |f_m(x) - f_n(x)|^2 \, dx \leq \frac{1}{n} \to 0.
+\]
+
+But the pointwise limit is:
+\[
+f(x) = \begin{cases}
+0 & \text{if } 0 \leq x < \frac{1}{2} \\
+1 & \text{if } \frac{1}{2} \leq x \leq 1
+\end{cases}
+\]
+which is \textbf{not continuous}. So $\{f_n\}$ is Cauchy in $C([0,1])$ but does \textbf{not converge} in $C([0,1])$.
+
+\subsection*{7. Example 4: Fourier Partial Sums in $L^2([-\pi,\pi])$}
+
+For $f \in L^2([-\pi,\pi])$, define the Fourier partial sums:
+\[
+S_n(x) = \frac{a_0}{2} + \sum_{k=1}^n \left[a_k \cos(kx) + b_k \sin(kx)\right],
+\]
+where $a_k, b_k$ are Fourier coefficients.
+
+\textbf{Theorem:} $\{S_n\}$ is a Cauchy sequence in $L^2([-\pi,\pi])$.
+
+\textbf{Proof:} For $m > n$,
+\begin{align*}
+\|S_m - S_n\|_{L^2}^2 &= \left\| \sum_{k=n+1}^m \left[a_k \cos(kx) + b_k \sin(kx)\right] \right\|_{L^2}^2 \\
+&= \pi \sum_{k=n+1}^m (a_k^2 + b_k^2) \quad \text{(by orthogonality)}.
+\end{align*}
+Since $\sum_{k=1}^\infty (a_k^2 + b_k^2) < \infty$ (Bessel's inequality), the tail sum $\to 0$.
+
+By completeness of $L^2$, $S_n \to f$ in $L^2$ norm.
+
+\subsection*{8. Example 5: Iterative Approximation (Fixed Point)}
+
+Consider solving $Ax = b$ in $\mathbb{R}^n$ with iterative method:
+\[
+x_{n+1} = Tx_n + c,
+\]
+where $T$ is a contraction: $\|T\| < 1$.
+
+\textbf{Claim:} $\{x_n\}$ is Cauchy.
+
+\textbf{Proof:}
+\begin{align*}
+\|x_{m} - x_n\| &\leq \|T\|\|x_{m-1} - x_{n-1}\| \\
+&\leq \|T\|^{\min(m,n)} \|x_{m-n} - x_0\| \\
+&\leq \frac{\|T\|^n}{1-\|T\|} \|x_1 - x_0\| \to 0.
+\end{align*}
+
+\subsection*{9. Characterization Using Inner Products}
+
+In an inner product space, $\{x_n\}$ is Cauchy if and only if:
+\[
+\lim_{m,n \to \infty} \langle x_m, x_n \rangle \text{ exists}.
+\]
+
+Specifically, if $\|x_n\| \to R$, then $\{x_n\}$ is Cauchy if and only if:
+\[
+\lim_{m,n \to \infty} \langle x_m, x_n \rangle = R^2.
+\]
+
+\subsection*{10. Example 6: Orthogonal Sequence}
+
+Let $\{e_n\}$ be an orthonormal sequence in a Hilbert space $H$. Consider:
+\[
+x_n = \sum_{k=1}^n \frac{1}{k} e_k.
+\]
+
+\textbf{Check Cauchy:} For $m > n$,
+\[
+\|x_m - x_n\|^2 = \left\| \sum_{k=n+1}^m \frac{1}{k} e_k \right\|^2 = \sum_{k=n+1}^m \frac{1}{k^2} \to 0.
+\]
+Converges to $x = \sum_{k=1}^\infty \frac{1}{k} e_k \in H$.
+
+\subsection*{11. Non-Example: Sequence That is Not Cauchy}
+
+In $\mathbb{R}^2$, consider $x_n = ((-1)^n, \frac{1}{n})$.
+
+For even $n = 2k$, odd $m = 2k+1$:
+\[
+\|x_{2k} - x_{2k+1}\| = \left\|(2, \frac{1}{2k} - \frac{1}{2k+1})\right\| \geq 2 \ \not\to 0.
+\]
+
+\subsection*{12. Application: Completeness Proofs}
+
+To prove an inner product space is complete (a Hilbert space), one must show:
+\begin{enumerate}
+    \item Take any Cauchy sequence $\{x_n\}$.
+    \item Construct a candidate limit $x$.
+    \item Show $x$ is in the space.
+    \item Show $\|x_n - x\| \to 0$.
+\end{enumerate}
+
+For $L^2([a,b])$, this uses the Riesz-Fischer theorem.
+
+\subsection*{13. Summary of Key Points}
+
+\begin{itemize}
+    \item \textbf{Cauchy sequences} generalize the idea of "getting arbitrarily close" without assuming a limit exists.
+    
+    \item In \textbf{finite-dimensional} inner product spaces, all Cauchy sequences converge (Heine-Borel).
+    
+    \item In \textbf{infinite dimensions}, completeness becomes crucial (Hilbert vs. pre-Hilbert spaces).
+    
+    \item The $L^2$ spaces are complete; $C([a,b])$ with $L^2$ norm is not.
+    
+    \item Many numerical methods (iterative approximations) produce Cauchy sequences.
+\end{itemize}
+
+
+\section*{Finite-Dimensional Hilbert Spaces: $\mathbb{R}^n$ with Euclidean Structure}
+
+\subsection*{1. Definition of a Hilbert Space}
+
+A \textbf{Hilbert space} is a complete inner product space. A space is \textbf{finite-dimensional} if it has a finite basis. All finite-dimensional inner product spaces are automatically complete, so they are Hilbert spaces.
+
+\subsection*{2. Canonical Example: $\mathbb{R}^n$}
+
+The most fundamental finite-dimensional Hilbert space is $\mathbb{R}^n$ (or $\mathbb{C}^n$ for complex case) with the standard Euclidean structure.
+
+\subsubsection*{2.1 Vector Space Structure}
+\[
+\mathbb{R}^n = \left\{ \mathbf{x} = (x_1, x_2, \dots, x_n)^T \mid x_i \in \mathbb{R} \right\}.
+\]
+
+\textbf{Operations:}
+\begin{align*}
+\mathbf{x} + \mathbf{y} &= (x_1 + y_1, x_2 + y_2, \dots, x_n + y_n)^T, \\
+\alpha\mathbf{x} &= (\alpha x_1, \alpha x_2, \dots, \alpha x_n)^T, \quad \alpha \in \mathbb{R}.
+\end{align*}
+
+\subsubsection*{2.2 Standard Inner Product (Dot Product)}
+\[
+\langle \mathbf{x}, \mathbf{y} \rangle = \mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^n x_i y_i.
+\]
+
+\textbf{Properties:}
+\begin{enumerate}
+    \item Symmetry: $\langle \mathbf{x}, \mathbf{y} \rangle = \langle \mathbf{y}, \mathbf{x} \rangle$
+    \item Linearity: $\langle \alpha\mathbf{x} + \beta\mathbf{z}, \mathbf{y} \rangle = \alpha\langle \mathbf{x}, \mathbf{y} \rangle + \beta\langle \mathbf{z}, \mathbf{y} \rangle$
+    \item Positive definiteness: $\langle \mathbf{x}, \mathbf{x} \rangle \geq 0$, with equality iff $\mathbf{x} = \mathbf{0}$
+\end{enumerate}
+
+\subsubsection*{2.3 Induced Norm (Euclidean Norm)}
+\[
+\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle} = \left( \sum_{i=1}^n x_i^2 \right)^{1/2}.
+\]
+
+\subsubsection*{2.4 Induced Metric (Euclidean Distance)}
+\[
+d(\mathbf{x}, \mathbf{y}) = \|\mathbf{x} - \mathbf{y}\| = \left( \sum_{i=1}^n (x_i - y_i)^2 \right)^{1/2}.
+\]
+
+\subsection*{3. Example: $\mathbb{R}^3$ (3D Euclidean Space)}
+
+Let's examine $\mathbb{R}^3$ in detail as it has clear geometric interpretation.
+
+\subsubsection*{3.1 Standard Basis}
+\[
+\mathcal{B} = \left\{ \mathbf{e}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, 
+\mathbf{e}_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, 
+\mathbf{e}_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \right\}.
+\]
+
+\textbf{Orthonormality:}
+\[
+\langle \mathbf{e}_i, \mathbf{e}_j \rangle = \delta_{ij} = \begin{cases}
+1 & \text{if } i = j, \\
+0 & \text{if } i \neq j.
+\end{cases}
+\]
+
+\subsubsection*{3.2 Geometric Operations}
+
+For $\mathbf{u} = (1, 2, -1)^T$, $\mathbf{v} = (3, 0, 2)^T$:
+
+\textbf{Inner product:}
+\[
+\langle \mathbf{u}, \mathbf{v} \rangle = 1\cdot3 + 2\cdot0 + (-1)\cdot2 = 1.
+\]
+
+\textbf{Norms:}
+\[
+\|\mathbf{u}\| = \sqrt{1^2 + 2^2 + (-1)^2} = \sqrt{6}, \quad
+\|\mathbf{v}\| = \sqrt{3^2 + 0^2 + 2^2} = \sqrt{13}.
+\]
+
+\textbf{Angle:}
+\[
+\cos\theta = \frac{\langle \mathbf{u}, \mathbf{v} \rangle}{\|\mathbf{u}\|\|\mathbf{v}\|} = \frac{1}{\sqrt{6}\sqrt{13}} \approx 0.113.
+\]
+
+\textbf{Orthogonal projection of $\mathbf{u}$ onto $\mathbf{v}$:}
+\[
+\text{proj}_{\mathbf{v}}(\mathbf{u}) = \frac{\langle \mathbf{u}, \mathbf{v} \rangle}{\langle \mathbf{v}, \mathbf{v} \rangle} \mathbf{v} = \frac{1}{13}(3, 0, 2)^T = \left(\frac{3}{13}, 0, \frac{2}{13}\right)^T.
+\]
+
+\subsection*{4. Completeness in Finite Dimensions}
+
+\textbf{Theorem:} Every finite-dimensional inner product space is complete.
+
+\textbf{Proof sketch for $\mathbb{R}^n$:}
+\begin{enumerate}
+    \item Let $\{\mathbf{x}^{(k)}\}_{k=1}^\infty$ be Cauchy in $\mathbb{R}^n$.
+    \item Each coordinate sequence $\{x_i^{(k)}\}_{k=1}^\infty$ is Cauchy in $\mathbb{R}$.
+    \item $\mathbb{R}$ is complete, so $x_i^{(k)} \to x_i$ for each $i$.
+    \item Define $\mathbf{x} = (x_1, \dots, x_n)^T$.
+    \item Show $\|\mathbf{x}^{(k)} - \mathbf{x}\| \to 0$.
+\end{enumerate}
+
+\textbf{Alternative proof:} All norms on $\mathbb{R}^n$ are equivalent, and $\mathbb{R}^n$ with the Euclidean norm is complete since closed and bounded sets are compact (Heine-Borel theorem).
+
+\subsection*{5. Alternative Inner Products on $\mathbb{R}^n$}
+
+$\mathbb{R}^n$ can have different Hilbert space structures with different inner products.
+
+\subsubsection*{5.1 Weighted Inner Product}
+Let $w_1, w_2, \dots, w_n > 0$ be positive weights. Define:
+\[
+\langle \mathbf{x}, \mathbf{y} \rangle_W = \sum_{i=1}^n w_i x_i y_i.
+\]
+
+\textbf{Example in $\mathbb{R}^2$:} With $w_1 = 2$, $w_2 = 3$:
+\[
+\langle (x_1, x_2), (y_1, y_2) \rangle_W = 2x_1y_1 + 3x_2y_2.
+\]
+
+\subsubsection*{5.2 Matrix Inner Product}
+Let $A$ be an $n \times n$ symmetric positive definite matrix. Define:
+\[
+\langle \mathbf{x}, \mathbf{y} \rangle_A = \mathbf{x}^T A \mathbf{y}.
+\]
+
+\textbf{Example:} $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$ in $\mathbb{R}^2$:
+\[
+\langle (x_1, x_2), (y_1, y_2) \rangle_A = 2x_1y_1 + x_1y_2 + x_2y_1 + 2x_2y_2.
+\]
+
+All these give different Hilbert space structures on the same underlying set $\mathbb{R}^n$.
+
+\subsection*{6. Isomorphism with All Finite-Dimensional Hilbert Spaces}
+
+\textbf{Theorem:} Every $n$-dimensional Hilbert space $H$ is isomorphic to $\mathbb{R}^n$.
+
+\textbf{Proof:} Let $\{\mathbf{v}_1, \dots, \mathbf{v}_n\}$ be an orthonormal basis for $H$. The map $T: H \to \mathbb{R}^n$ defined by:
+\[
+T(\mathbf{x}) = (\langle \mathbf{x}, \mathbf{v}_1 \rangle, \dots, \langle \mathbf{x}, \mathbf{v}_n \rangle)^T
+\]
+is an isometric isomorphism (preserves inner products).
+
+\subsection*{7. Example: Polynomial Space $\mathcal{P}_n$}
+
+Consider the space of polynomials of degree $\leq n$:
+\[
+\mathcal{P}_n = \left\{ p(x) = a_0 + a_1x + \cdots + a_nx^n \mid a_i \in \mathbb{R} \right\}.
+\]
+
+\textbf{Dimension:} $\dim(\mathcal{P}_n) = n+1$.
+
+\textbf{Inner product:} On $[-1, 1]$ define:
+\[
+\langle p, q \rangle = \int_{-1}^1 p(x)q(x) \, dx.
+\]
+
+\textbf{Basis:} The standard basis $\{1, x, x^2, \dots, x^n\}$ is NOT orthogonal. The \textbf{Legendre polynomials} form an orthogonal basis.
+
+\textbf{Legendre polynomials (first few):}
+\begin{align*}
+P_0(x) &= 1, \\
+P_1(x) &= x, \\
+P_2(x) &= \frac{1}{2}(3x^2 - 1), \\
+P_3(x) &= \frac{1}{2}(5x^3 - 3x).
+\end{align*}
+
+\textbf{Orthogonality:}
+\[
+\langle P_i, P_j \rangle = \int_{-1}^1 P_i(x)P_j(x) \, dx = \frac{2}{2i+1} \delta_{ij}.
+\]
+
+Thus $(\mathcal{P}_n, \langle \cdot, \cdot \rangle)$ is an $(n+1)$-dimensional Hilbert space.
+
+\subsection*{8. Example: $\mathbb{C}^n$ (Complex Case)}
+
+For complex Hilbert spaces, $\mathbb{C}^n$ with inner product:
+\[
+\langle \mathbf{z}, \mathbf{w} \rangle = \sum_{i=1}^n z_i \overline{w_i}.
+\]
+
+\textbf{Hermitian symmetry:} $\langle \mathbf{z}, \mathbf{w} \rangle = \overline{\langle \mathbf{w}, \mathbf{z} \rangle}$.
+
+\textbf{Example in $\mathbb{C}^2$:}
+\[
+\langle (1+i, 2), (3, 1-i) \rangle = (1+i)\overline{3} + 2\overline{(1-i)} = (1+i)3 + 2(1+i) = 3+3i+2+2i = 5+5i.
+\]
+
+\subsection*{9. Key Properties of Finite-Dimensional Hilbert Spaces}
+
+\begin{enumerate}
+    \item \textbf{Complete:} All Cauchy sequences converge.
+    
+    \item \textbf{Heine-Borel property:} Closed and bounded sets are compact.
+    
+    \item \textbf{All linear operators are bounded:} If $T: H \to H$ is linear, then $\|T\| < \infty$.
+    
+    \item \textbf{All subspaces are closed:} Finite-dimensional subspaces are always closed.
+    
+    \item \textbf{Orthogonal decomposition:} For any subspace $W \subset H$, $H = W \oplus W^\perp$.
+    
+    \item \textbf{Finite orthonormal bases always exist.}
+\end{enumerate}
+
+\subsection*{10. Comparison with Infinite-Dimensional Hilbert Spaces}
+
+\[
+\begin{array}{|c|c|c|}
+\hline
+\text{Property} & \text{Finite-Dimensional} & \text{Infinite-Dimensional} \\
+\hline
+\text{Unit ball} & \text{Compact} & \text{Not compact} \\
+\text{Basis} & \text{Finite} & \text{Infinite (countable if separable)} \\
+\text{Closed+bounded} & \text{Compact} & \text{Not necessarily compact} \\
+\text{All subspaces closed} & \text{Yes} & \text{No} \\
+\text{All operators bounded} & \text{Yes} & \text{No} \\
+\hline
+\end{array}
+\]
+
+\subsection*{11. Application: Least Squares Approximation}
+
+In $\mathbb{R}^n$, given $\mathbf{b} \in \mathbb{R}^n$ and subspace $W = \text{span}\{\mathbf{w}_1, \dots, \mathbf{w}_k\}$, the best approximation to $\mathbf{b}$ in $W$ is:
+\[
+\mathbf{p} = \sum_{i=1}^k \frac{\langle \mathbf{b}, \mathbf{w}_i \rangle}{\langle \mathbf{w}_i, \mathbf{w}_i \rangle} \mathbf{w}_i \quad \text{(if $\mathbf{w}_i$ orthogonal)}.
+\]
+
+\textbf{Example:} In $\mathbb{R}^3$, approximate $\mathbf{b} = (1,2,3)^T$ by vectors in $xy$-plane:
+\[
+W = \text{span}\{(1,0,0)^T, (0,1,0)^T\}, \quad \mathbf{p} = (1,2,0)^T.
+\]
+
+\subsection*{12. Summary}
+
+$\mathbb{R}^n$ with the standard inner product is the prototypical finite-dimensional Hilbert space. All finite-dimensional Hilbert spaces are essentially $\mathbb{R}^n$ (or $\mathbb{C}^n$) up to isomorphism. The finite-dimensionality ensures many nice properties (compactness of unit ball, boundedness of all operators, closedness of all subspaces) that fail in infinite dimensions, making finite-dimensional Hilbert spaces particularly tractable for computation and analysis.
+
+
+
+\section*{Simple Example of a Complex Hilbert Space: $\mathbb{C}^2$}
+
+\subsection*{1. Definition of the Space}
+
+The simplest nontrivial complex Hilbert space is $\mathbb{C}^2$, the space of ordered pairs of complex numbers:
+
+\[
+\mathbb{C}^2 = \left\{ \mathbf{z} = \begin{pmatrix} z_1 \\ z_2 \end{pmatrix} \mid z_1, z_2 \in \mathbb{C} \right\}.
+\]
+
+\subsection*{2. Vector Space Structure over $\mathbb{C}$}
+
+$\mathbb{C}^2$ is a vector space over the field $\mathbb{C}$ of complex numbers.
+
+\textbf{Vector addition:} For $\mathbf{z} = \begin{pmatrix} z_1 \\ z_2 \end{pmatrix}$ and $\mathbf{w} = \begin{pmatrix} w_1 \\ w_2 \end{pmatrix}$:
+\[
+\mathbf{z} + \mathbf{w} = \begin{pmatrix} z_1 + w_1 \\ z_2 + w_2 \end{pmatrix}.
+\]
+
+\textbf{Scalar multiplication:} For $\alpha \in \mathbb{C}$ and $\mathbf{z} \in \mathbb{C}^2$:
+\[
+\alpha\mathbf{z} = \begin{pmatrix} \alpha z_1 \\ \alpha z_2 \end{pmatrix}.
+\]
+
+\textbf{Zero vector:} $\mathbf{0} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$.
+
+\subsection*{3. Standard Inner Product (Hermitian Inner Product)}
+
+The standard inner product on $\mathbb{C}^2$ is:
+\[
+\langle \mathbf{z}, \mathbf{w} \rangle = z_1\overline{w_1} + z_2\overline{w_2}.
+\]
+
+Note the \textbf{conjugation} on the second component.
+
+\textbf{Properties (different from real case):}
+\begin{enumerate}
+    \item \textbf{Conjugate symmetry:} $\langle \mathbf{z}, \mathbf{w} \rangle = \overline{\langle \mathbf{w}, \mathbf{z} \rangle}$
+    \item \textbf{Linearity in first argument:} $\langle \alpha\mathbf{z} + \beta\mathbf{u}, \mathbf{w} \rangle = \alpha\langle \mathbf{z}, \mathbf{w} \rangle + \beta\langle \mathbf{u}, \mathbf{w} \rangle$
+    \item \textbf{Antilinearity in second argument:} $\langle \mathbf{z}, \alpha\mathbf{w} + \beta\mathbf{v} \rangle = \overline{\alpha}\langle \mathbf{z}, \mathbf{w} \rangle + \overline{\beta}\langle \mathbf{z}, \mathbf{v} \rangle$
+    \item \textbf{Positive definiteness:} $\langle \mathbf{z}, \mathbf{z} \rangle \geq 0$, with equality iff $\mathbf{z} = \mathbf{0}$
+\end{enumerate}
+
+\subsection*{4. Induced Norm}
+
+The norm induced by the inner product is:
+\[
+\|\mathbf{z}\| = \sqrt{\langle \mathbf{z}, \mathbf{z} \rangle} = \sqrt{|z_1|^2 + |z_2|^2}.
+\]
+
+\subsection*{5. Example Computations}
+
+Let $\mathbf{z} = \begin{pmatrix} 1 + i \\ 2 \end{pmatrix}$ and $\mathbf{w} = \begin{pmatrix} 3 - i \\ i \end{pmatrix}$.
+
+\textbf{Inner product:}
+\begin{align*}
+\langle \mathbf{z}, \mathbf{w} \rangle &= (1+i)\overline{(3-i)} + 2\overline{i} \\
+&= (1+i)(3+i) + 2(-i) \\
+&= (1+i)(3+i) - 2i \\
+&= (1\cdot3 + 1\cdot i + i\cdot3 + i\cdot i) - 2i \\
+&= (3 + i + 3i + i^2) - 2i \\
+&= (3 + 4i - 1) - 2i \\
+&= (2 + 4i) - 2i = 2 + 2i.
+\end{align*}
+
+\textbf{Check conjugate symmetry:}
+\[
+\langle \mathbf{w}, \mathbf{z} \rangle = (3-i)\overline{(1+i)} + i\overline{2} = (3-i)(1-i) + i\cdot2 = (3-3i-i+i^2) + 2i = (3-4i-1) + 2i = 2 - 2i.
+\]
+Indeed, $\overline{2 + 2i} = 2 - 2i$.
+
+\textbf{Norms:}
+\begin{align*}
+\|\mathbf{z}\| &= \sqrt{|1+i|^2 + |2|^2} = \sqrt{(\sqrt{1^2+1^2})^2 + 4} = \sqrt{2 + 4} = \sqrt{6}, \\
+\|\mathbf{w}\| &= \sqrt{|3-i|^2 + |i|^2} = \sqrt{(\sqrt{3^2+(-1)^2})^2 + 1} = \sqrt{10 + 1} = \sqrt{11}.
+\end{align*}
+
+\subsection*{6. Standard Orthonormal Basis}
+
+The standard orthonormal basis for $\mathbb{C}^2$ is:
+\[
+\left\{ \mathbf{e}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \ \mathbf{e}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix} \right\}.
+\]
+
+\textbf{Orthonormality check:}
+\[
+\langle \mathbf{e}_1, \mathbf{e}_1 \rangle = 1\cdot\overline{1} + 0\cdot\overline{0} = 1, \quad
+\langle \mathbf{e}_1, \mathbf{e}_2 \rangle = 1\cdot\overline{0} + 0\cdot\overline{1} = 0.
+\]
+
+\subsection*{7. Alternative Basis: Quantum Computing Basis}
+
+In quantum computing, a common orthonormal basis is:
+\[
+\left\{ |0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \ |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix} \right\}.
+\]
+
+Another useful basis (the Hadamard basis):
+\[
+\left\{ |+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}, \ |-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix} \right\}.
+\]
+
+\textbf{Check orthonormality of Hadamard basis:}
+\[
+\langle |+\rangle, |+\rangle \rangle = \frac{1}{2}(1\cdot\overline{1} + 1\cdot\overline{1}) = \frac{1}{2}(1+1) = 1,
+\]
+\[
+\langle |+\rangle, |-\rangle \rangle = \frac{1}{2}(1\cdot\overline{1} + 1\cdot\overline{-1}) = \frac{1}{2}(1 - 1) = 0.
+\]
+
+\subsection*{8. Orthogonality and Angles}
+
+Two vectors $\mathbf{z}, \mathbf{w} \in \mathbb{C}^2$ are \textbf{orthogonal} if $\langle \mathbf{z}, \mathbf{w} \rangle = 0$.
+
+\textbf{Example:} $\mathbf{z} = \begin{pmatrix} 1 \\ i \end{pmatrix}$ and $\mathbf{w} = \begin{pmatrix} i \\ 1 \end{pmatrix}$:
+\[
+\langle \mathbf{z}, \mathbf{w} \rangle = 1\cdot\overline{i} + i\cdot\overline{1} = 1\cdot(-i) + i\cdot1 = -i + i = 0.
+\]
+
+In complex spaces, the concept of "angle" is less intuitive than in real spaces, but we can define the angle $\theta$ via:
+\[
+|\langle \mathbf{z}, \mathbf{w} \rangle| = \|\mathbf{z}\|\|\mathbf{w}\|\cos\theta.
+\]
+
+\subsection*{9. Completeness (Finite-Dimensional)}
+
+Since $\mathbb{C}^2$ is finite-dimensional, it is automatically complete. Any Cauchy sequence converges.
+
+\textbf{Example sequence:} $\mathbf{z}_n = \begin{pmatrix} 1 + \frac{i}{n} \\ \frac{1}{n} \end{pmatrix}$.
+
+This converges to $\mathbf{z} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$:
+\[
+\|\mathbf{z}_n - \mathbf{z}\| = \sqrt{\left|\frac{i}{n}\right|^2 + \left|\frac{1}{n}\right|^2} = \sqrt{\frac{1}{n^2} + \frac{1}{n^2}} = \frac{\sqrt{2}}{n} \to 0.
+\]
+
+\subsection*{10. Comparison with $\mathbb{R}^2$}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Property} & $\mathbb{R}^2$ (real) & $\mathbb{C}^2$ (complex) \\
+\hline
+Field & $\mathbb{R}$ & $\mathbb{C}$ \\
+Inner product & $\langle \mathbf{x}, \mathbf{y} \rangle = x_1y_1 + x_2y_2$ & $\langle \mathbf{z}, \mathbf{w} \rangle = z_1\overline{w_1} + z_2\overline{w_2}$ \\
+Symmetry & $\langle \mathbf{x}, \mathbf{y} \rangle = \langle \mathbf{y}, \mathbf{x} \rangle$ & $\langle \mathbf{z}, \mathbf{w} \rangle = \overline{\langle \mathbf{w}, \mathbf{z} \rangle}$ \\
+Dimension (over field) & 2 & 2 \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{11. Application: Quantum States}
+
+In quantum mechanics, a qubit (quantum bit) state is represented by a unit vector in $\mathbb{C}^2$:
+
+\[
+|\psi\rangle = \alpha|0\rangle + \beta|1\rangle = \begin{pmatrix} \alpha \\ \beta \end{pmatrix}, \quad |\alpha|^2 + |\beta|^2 = 1.
+\]
+
+\textbf{Example:} $|\psi\rangle = \frac{1}{\sqrt{2}}|0\rangle + \frac{i}{\sqrt{2}}|1\rangle = \begin{pmatrix} \frac{1}{\sqrt{2}} \\ \frac{i}{\sqrt{2}} \end{pmatrix}$.
+
+Check normalization:
+\[
+\left|\frac{1}{\sqrt{2}}\right|^2 + \left|\frac{i}{\sqrt{2}}\right|^2 = \frac{1}{2} + \frac{1}{2} = 1.
+\]
+
+\subsection*{12. Matrix Representation of Vectors}
+
+Vectors in $\mathbb{C}^2$ can be written as column matrices. The inner product becomes:
+\[
+\langle \mathbf{z}, \mathbf{w} \rangle = \mathbf{z}^\dagger \mathbf{w},
+\]
+where $\mathbf{z}^\dagger = (\overline{z_1}, \overline{z_2})$ is the conjugate transpose.
+
+\textbf{Example:} For $\mathbf{z} = \begin{pmatrix} 1+i \\ 2 \end{pmatrix}$ and $\mathbf{w} = \begin{pmatrix} 3-i \\ i \end{pmatrix}$:
+\[
+\mathbf{z}^\dagger \mathbf{w} = \begin{pmatrix} \overline{1+i} & \overline{2} \end{pmatrix} \begin{pmatrix} 3-i \\ i \end{pmatrix} = \begin{pmatrix} 1-i & 2 \end{pmatrix} \begin{pmatrix} 3-i \\ i \end{pmatrix} = (1-i)(3-i) + 2i.
+\]
+
+\subsection*{13. Summary}
+
+$\mathbb{C}^2$ is the simplest nontrivial example of a complex Hilbert space:
+\begin{itemize}
+    \item 2-dimensional vector space over $\mathbb{C}$
+    \item Hermitian inner product with conjugate symmetry
+    \item Automatically complete (finite-dimensional)
+    \item Standard orthonormal basis $\{\mathbf{e}_1, \mathbf{e}_2\}$
+    \item Fundamental in quantum mechanics (qubit states)
+    \item All properties generalize to $\mathbb{C}^n$ for any $n$
+\end{itemize}
+
+This example illustrates the key differences between real and complex Hilbert spaces, particularly the conjugate symmetry of the inner product, which is essential for many applications in quantum physics and signal processing.
+
+\section*{Tensor Product of Vector Spaces: Theorem and Example}
+
+\subsection*{1. Universal Property Definition}
+
+Let $V$ and $W$ be vector spaces over a field $\mathbb{F}$. A \textbf{tensor product} of $V$ and $W$ is a vector space $V \otimes W$ together with a bilinear map $\otimes: V \times W \to V \otimes W$ satisfying the following universal property:
+
+\begin{center}
+\fbox{\parbox{0.9\textwidth}{
+\textbf{Universal Property:} For any vector space $U$ and any bilinear map $B: V \times W \to U$, there exists a unique linear map $\tilde{B}: V \otimes W \to U$ such that:
+\[
+B(v,w) = \tilde{B}(v \otimes w) \quad \text{for all } v \in V, w \in W.
+\]
+Equivalently, the following diagram commutes:
+\[
+\begin{array}{ccc}
+V \times W & \xrightarrow{\otimes} & V \otimes W \\
+& B \searrow & \downarrow  \tilde{B} \\
+& & U
+\end{array}
+\]
+}}
+\end{center}
+\subsection*{2. Existence and Uniqueness Theorem}
+
+\begin{theorem}[Existence and Uniqueness of Tensor Product]
+For any two vector spaces $V$ and $W$ over $\mathbb{F}$, there exists a tensor product $(V \otimes W, \otimes)$, and it is unique up to unique isomorphism. That is, if $(T, t)$ and $(T', t')$ are both tensor products of $V$ and $W$, then there exists a unique isomorphism $\phi: T \to T'$ such that $\phi(t(v,w)) = t'(v,w)$ for all $v \in V$, $w \in W$.
+\end{theorem}
+
+\subsection*{3. Constructive Definition}
+
+The tensor product can be constructed as the quotient space:
+\[
+V \otimes W = F(V \times W) / R,
+\]
+where:
+\begin{itemize}
+    \item $F(V \times W)$ is the free vector space over $\mathbb{F}$ with basis $V \times W$
+    \item $R$ is the subspace generated by all elements of the form:
+    \begin{align*}
+    &(v_1 + v_2, w) - (v_1, w) - (v_2, w), \\
+    &(v, w_1 + w_2) - (v, w_1) - (v, w_2), \\
+    &(\alpha v, w) - \alpha(v, w), \\
+    &(v, \alpha w) - \alpha(v, w),
+    \end{align*}
+    for all $v, v_1, v_2 \in V$, $w, w_1, w_2 \in W$, $\alpha \in \mathbb{F}$.
+\end{itemize}
+
+The equivalence class of $(v,w)$ is denoted $v \otimes w$.
+
+\subsection*{4. Basic Properties}
+
+For $v, v_1, v_2 \in V$, $w, w_1, w_2 \in W$, $\alpha \in \mathbb{F}$:
+\begin{enumerate}
+    \item $(v_1 + v_2) \otimes w = v_1 \otimes w + v_2 \otimes w$
+    \item $v \otimes (w_1 + w_2) = v \otimes w_1 + v \otimes w_2$
+    \item $(\alpha v) \otimes w = v \otimes (\alpha w) = \alpha(v \otimes w)$
+    \item $0_V \otimes w = v \otimes 0_W = 0_{V \otimes W}$
+\end{enumerate}
+
+\subsection*{5. Dimension Formula}
+
+\begin{theorem}[Dimension of Tensor Product]
+If $V$ and $W$ are finite-dimensional with $\dim V = m$, $\dim W = n$, then:
+\[
+\dim(V \otimes W) = (\dim V)(\dim W) = mn.
+\]
+\end{theorem}
+
+\textbf{Proof:} If $\{e_1, \dots, e_m\}$ is a basis for $V$ and $\{f_1, \dots, f_n\}$ is a basis for $W$, then $\{e_i \otimes f_j \mid 1 \leq i \leq m, 1 \leq j \leq n\}$ is a basis for $V \otimes W$.
+
+\subsection*{6. Example: $\mathbb{R}^2 \otimes \mathbb{R}^3$}
+
+Let $V = \mathbb{R}^2$ (2-dimensional) and $W = \mathbb{R}^3$ (3-dimensional). Then $V \otimes W = \mathbb{R}^2 \otimes \mathbb{R}^3$ has dimension $2 \times 3 = 6$.
+
+\subsubsection*{6.1 Bases}
+Choose standard bases:
+\[
+\mathcal{B}_V = \left\{ \mathbf{e}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \ \mathbf{e}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix} \right\}, \quad
+\mathcal{B}_W = \left\{ \mathbf{f}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \ \mathbf{f}_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \ \mathbf{f}_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \right\}.
+\]
+
+Then $\mathbb{R}^2 \otimes \mathbb{R}^3$ has basis:
+\[
+\mathcal{B}_{V \otimes W} = \{\mathbf{e}_i \otimes \mathbf{f}_j \mid i = 1,2; \ j = 1,2,3\}.
+\]
+
+Explicitly:
+\begin{align*}
+\mathbf{e}_1 \otimes \mathbf{f}_1 &, \quad \mathbf{e}_1 \otimes \mathbf{f}_2, \quad \mathbf{e}_1 \otimes \mathbf{f}_3, \\
+\mathbf{e}_2 \otimes \mathbf{f}_1 &, \quad \mathbf{e}_2 \otimes \mathbf{f}_2, \quad \mathbf{e}_2 \otimes \mathbf{f}_3.
+\end{align*}
+
+\subsubsection*{6.2 Isomorphism with $\mathbb{R}^6$}
+
+There is a natural isomorphism $\phi: \mathbb{R}^2 \otimes \mathbb{R}^3 \to \mathbb{R}^6$ by ordering the basis elements:
+
+\[
+\phi(\mathbf{e}_1 \otimes \mathbf{f}_1) = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}, \ 
+\phi(\mathbf{e}_1 \otimes \mathbf{f}_2) = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}, \ 
+\phi(\mathbf{e}_1 \otimes \mathbf{f}_3) = \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix},
+\]
+\[
+\phi(\mathbf{e}_2 \otimes \mathbf{f}_1) = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \ 
+\phi(\mathbf{e}_2 \otimes \mathbf{f}_2) = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}, \ 
+\phi(\mathbf{e}_2 \otimes \mathbf{f}_3) = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}.
+\]
+
+\subsubsection*{6.3 Concrete Example Computation}
+
+Let $\mathbf{v} = \begin{pmatrix} 2 \\ -1 \end{pmatrix} \in \mathbb{R}^2$ and $\mathbf{w} = \begin{pmatrix} 3 \\ 0 \\ 4 \end{pmatrix} \in \mathbb{R}^3$.
+
+\textbf{Step 1: Write in terms of bases:}
+\[
+\mathbf{v} = 2\mathbf{e}_1 + (-1)\mathbf{e}_2, \quad \mathbf{w} = 3\mathbf{f}_1 + 0\mathbf{f}_2 + 4\mathbf{f}_3.
+\]
+
+\textbf{Step 2: Compute tensor product:}
+\begin{align*}
+\mathbf{v} \otimes \mathbf{w} &= (2\mathbf{e}_1 - \mathbf{e}_2) \otimes (3\mathbf{f}_1 + 4\mathbf{f}_3) \\
+&= 2\mathbf{e}_1 \otimes (3\mathbf{f}_1 + 4\mathbf{f}_3) - \mathbf{e}_2 \otimes (3\mathbf{f}_1 + 4\mathbf{f}_3) \\
+&= 6(\mathbf{e}_1 \otimes \mathbf{f}_1) + 8(\mathbf{e}_1 \otimes \mathbf{f}_3) - 3(\mathbf{e}_2 \otimes \mathbf{f}_1) - 4(\mathbf{e}_2 \otimes \mathbf{f}_3).
+\end{align*}
+
+\textbf{Step 3: Represent in $\mathbb{R}^6$ via isomorphism:}
+\[
+\mathbf{v} \otimes \mathbf{w} \equiv 6\begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} + 
+8\begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} - 
+3\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} - 
+4\begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 1 \end{pmatrix} = 
+\begin{pmatrix} 6 \\ 0 \\ 8 \\ -3 \\ 0 \\ -4 \end{pmatrix}.
+\]
+
+\subsubsection*{6.4 Matrix Representation (Kronecker Product)}
+
+The tensor product corresponds to the Kronecker product of coordinate vectors:
+
+If $\mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$ and $\mathbf{w} = \begin{pmatrix} w_1 \\ w_2 \\ w_3 \end{pmatrix}$, then:
+\[
+\mathbf{v} \otimes \mathbf{w} = \begin{pmatrix} v_1\mathbf{w} \\ v_2\mathbf{w} \end{pmatrix} = 
+\begin{pmatrix} v_1w_1 \\ v_1w_2 \\ v_1w_3 \\ v_2w_1 \\ v_2w_2 \\ v_2w_3 \end{pmatrix}.
+\]
+
+For our example $\mathbf{v} = \begin{pmatrix} 2 \\ -1 \end{pmatrix}$, $\mathbf{w} = \begin{pmatrix} 3 \\ 0 \\ 4 \end{pmatrix}$:
+\[
+\mathbf{v} \otimes \mathbf{w} = \begin{pmatrix} 2 \cdot 3 \\ 2 \cdot 0 \\ 2 \cdot 4 \\ (-1) \cdot 3 \\ (-1) \cdot 0 \\ (-1) \cdot 4 \end{pmatrix} = 
+\begin{pmatrix} 6 \\ 0 \\ 8 \\ -3 \\ 0 \\ -4 \end{pmatrix}.
+\]
+Matches our previous computation.
+
+\subsection*{7. Properties Illustrated by the Example}
+
+\subsubsection*{7.1 Bilinearity Check}
+Let's verify bilinearity with a simpler example:
+
+Take $\mathbf{v}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$, $\mathbf{v}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$, $\mathbf{w} = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$.
+
+\textbf{Additivity in first argument:}
+\[
+(\mathbf{v}_1 + \mathbf{v}_2) \otimes \mathbf{w} = \begin{pmatrix} 1 \\ 1 \end{pmatrix} \otimes \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 1 \\ 2 \\ 3 \end{pmatrix}.
+\]
+\[
+\mathbf{v}_1 \otimes \mathbf{w} + \mathbf{v}_2 \otimes \mathbf{w} = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 0 \\ 0 \\ 0 \end{pmatrix} + \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \\ 2 \\ 3 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 1 \\ 2 \\ 3 \end{pmatrix}.
+\]
+
+
+\subsubsection*{7.2 Not All Elements Are Simple Tensors}
+
+A \textbf{simple tensor} (or pure tensor) is one of the form $v \otimes w$. Not every element of $V \otimes W$ is a simple tensor.
+
+\textbf{Example:} Consider $\mathbf{u} = \mathbf{e}_1 \otimes \mathbf{f}_1 + \mathbf{e}_2 \otimes \mathbf{f}_2 \in \mathbb{R}^2 \otimes \mathbb{R}^3$.
+
+Suppose $\mathbf{u} = \mathbf{v} \otimes \mathbf{w}$ for some $\mathbf{v} = \begin{pmatrix} a \\ b \end{pmatrix}$, $\mathbf{w} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}$.
+
+Then:
+\[
+\mathbf{v} \otimes \mathbf{w} = \begin{pmatrix} ax \\ ay \\ az \\ bx \\ by \\ bz \end{pmatrix} = 
+\begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}.
+\]
+This would require $ax = 1$, $ay = 0$, $az = 0$, $bx = 0$, $by = 1$, $bz = 0$.
+
+From $ay = 0$ and $az = 0$: if $a \neq 0$, then $y = z = 0$. But then $by = 0 \neq 1$. Contradiction.
+If $a = 0$, then $ax = 0 \neq 1$. Contradiction.
+
+Thus $\mathbf{u}$ is \textbf{not} a simple tensor. Such elements are called \textbf{entangled} in quantum mechanics.
+
+\subsection*{8. Linear Maps and Tensor Products}
+
+If $A: V \to V$ and $B: W \to W$ are linear maps, then $A \otimes B: V \otimes W \to V \otimes W$ is defined by:
+\[
+(A \otimes B)(v \otimes w) = A(v) \otimes B(w),
+\]
+extended linearly.
+
+\subsubsection*{Example:} Let $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ on $\mathbb{R}^2$ and $B = \begin{pmatrix} 1 & 0 & 2 \\ 0 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix}$ on $\mathbb{R}^3$.
+
+Then $A \otimes B$ is a $6 \times 6$ matrix (Kronecker product of matrices):
+\[
+A \otimes B = \begin{pmatrix}
+1B & 2B \\
+3B & 4B
+\end{pmatrix} = 
+\begin{pmatrix}
+1 & 0 & 2 & 2 & 0 & 4 \\
+0 & 1 & 0 & 0 & 2 & 0 \\
+1 & 0 & 1 & 2 & 0 & 2 \\
+3 & 0 & 6 & 4 & 0 & 8 \\
+0 & 3 & 0 & 0 & 4 & 0 \\
+3 & 0 & 3 & 4 & 0 & 4
+\end{pmatrix}.
+\]
+
+\subsection*{9. Summary}
+
+The tensor product $V \otimes W$:
+\begin{itemize}
+    \item \textbf{Dimension:} $\dim(V \otimes W) = (\dim V)(\dim W)$
+    \item \textbf{Basis:} If $\{e_i\}$ basis for $V$, $\{f_j\}$ basis for $W$, then $\{e_i \otimes f_j\}$ basis for $V \otimes W$
+    \item \textbf{Elements:} Linear combinations of simple tensors $v \otimes w$
+    \item \textbf{Not all elements simple:} Entangled states exist
+    \item \textbf{Example:} $\mathbb{R}^2 \otimes \mathbb{R}^3 \cong \mathbb{R}^6$ with Kronecker product as representation
+    \item \textbf{Universal property:} Bilinear maps factor uniquely through tensor product
+\end{itemize}
+
+The example $\mathbb{R}^2 \otimes \mathbb{R}^3$ concretely illustrates all these properties while being computationally accessible.
+
+
+
+\section*{Tensor Product of Multiple Vector Spaces: $(V_2 \otimes V_3) \otimes V_4$}
+
+\subsection*{1. Setup: Three Vector Spaces}
+
+Let:
+\begin{align*}
+V_2 &= \mathbb{R}^2 \quad &\text{(2-dimensional, basis } \{\mathbf{e}_1, \mathbf{e}_2\}) \\
+V_3 &= \mathbb{R}^3 \quad &\text{(3-dimensional, basis } \{\mathbf{f}_1, \mathbf{f}_2, \mathbf{f}_3\}) \\
+V_4 &= \mathbb{R}^4 \quad &\text{(4-dimensional, basis } \{\mathbf{g}_1, \mathbf{g}_2, \mathbf{g}_3, \mathbf{g}_4\})
+\end{align*}
+
+\subsection*{2. First Tensor Product: $V_2 \otimes V_3$}
+
+From previous results:
+\[
+\dim(V_2 \otimes V_3) = 2 \times 3 = 6.
+\]
+
+Basis for $V_2 \otimes V_3$:
+\[
+\{\mathbf{e}_i \otimes \mathbf{f}_j \mid i = 1,2; \ j = 1,2,3\}.
+\]
+Explicitly:
+\[
+\mathbf{e}_1\otimes\mathbf{f}_1,\ \mathbf{e}_1\otimes\mathbf{f}_2,\ \mathbf{e}_1\otimes\mathbf{f}_3,\ 
+\mathbf{e}_2\otimes\mathbf{f}_1,\ \mathbf{e}_2\otimes\mathbf{f}_2,\ \mathbf{e}_2\otimes\mathbf{f}_3.
+\]
+
+\subsection*{3. Second Tensor Product: $(V_2 \otimes V_3) \otimes V_4$}
+
+Now tensor the result with $V_4$:
+\[
+(V_2 \otimes V_3) \otimes V_4.
+\]
+
+\subsubsection*{3.1 Dimension Calculation}
+\[
+\dim((V_2 \otimes V_3) \otimes V_4) = \dim(V_2 \otimes V_3) \times \dim(V_4) = 6 \times 4 = 24.
+\]
+
+\subsubsection*{3.2 Basis Construction}
+A basis for $(V_2 \otimes V_3) \otimes V_4$ is:
+\[
+\{(\mathbf{e}_i \otimes \mathbf{f}_j) \otimes \mathbf{g}_k \mid i=1,2;\ j=1,2,3;\ k=1,2,3,4\}.
+\]
+
+Let's enumerate them systematically:
+
+For $i=1$:
+\begin{align*}
+&(\mathbf{e}_1 \otimes \mathbf{f}_1) \otimes \mathbf{g}_1,\ (\mathbf{e}_1 \otimes \mathbf{f}_1) \otimes \mathbf{g}_2,\ 
+(\mathbf{e}_1 \otimes \mathbf{f}_1) \otimes \mathbf{g}_3,\ (\mathbf{e}_1 \otimes \mathbf{f}_1) \otimes \mathbf{g}_4, \\
+&(\mathbf{e}_1 \otimes \mathbf{f}_2) \otimes \mathbf{g}_1,\ (\mathbf{e}_1 \otimes \mathbf{f}_2) \otimes \mathbf{g}_2,\ 
+(\mathbf{e}_1 \otimes \mathbf{f}_2) \otimes \mathbf{g}_3,\ (\mathbf{e}_1 \otimes \mathbf{f}_2) \otimes \mathbf{g}_4, \\
+&(\mathbf{e}_1 \otimes \mathbf{f}_3) \otimes \mathbf{g}_1,\ (\mathbf{e}_1 \otimes \mathbf{f}_3) \otimes \mathbf{g}_2,\ 
+(\mathbf{e}_1 \otimes \mathbf{f}_3) \otimes \mathbf{g}_3,\ (\mathbf{e}_1 \otimes \mathbf{f}_3) \otimes \mathbf{g}_4.
+\end{align*}
+
+For $i=2$:
+\begin{align*}
+&(\mathbf{e}_2 \otimes \mathbf{f}_1) \otimes \mathbf{g}_1,\ (\mathbf{e}_2 \otimes \mathbf{f}_1) \otimes \mathbf{g}_2,\ 
+(\mathbf{e}_2 \otimes \mathbf{f}_1) \otimes \mathbf{g}_3,\ (\mathbf{e}_2 \otimes \mathbf{f}_1) \otimes \mathbf{g}_4, \\
+&(\mathbf{e}_2 \otimes \mathbf{f}_2) \otimes \mathbf{g}_1,\ (\mathbf{e}_2 \otimes \mathbf{f}_2) \otimes \mathbf{g}_2,\ 
+(\mathbf{e}_2 \otimes \mathbf{f}_2) \otimes \mathbf{g}_3,\ (\mathbf{e}_2 \otimes \mathbf{f}_2) \otimes \mathbf{g}_4, \\
+&(\mathbf{e}_2 \otimes \mathbf{f}_3) \otimes \mathbf{g}_1,\ (\mathbf{e}_2 \otimes \mathbf{f}_3) \otimes \mathbf{g}_2,\ 
+(\mathbf{e}_2 \otimes \mathbf{f}_3) \otimes \mathbf{g}_3,\ (\mathbf{e}_2 \otimes \mathbf{f}_3) \otimes \mathbf{g}_4.
+\end{align*}
+
+Total: $2 \times 3 \times 4 = 24$ basis vectors.
+
+\subsection*{4. Associativity: $V_2 \otimes (V_3 \otimes V_4)$}
+
+Tensor product is associative up to natural isomorphism:
+\[
+(V_2 \otimes V_3) \otimes V_4 \cong V_2 \otimes (V_3 \otimes V_4) \cong V_2 \otimes V_3 \otimes V_4.
+\]
+
+\subsubsection*{4.1 $V_3 \otimes V_4$ first}
+\[
+\dim(V_3 \otimes V_4) = 3 \times 4 = 12.
+\]
+Basis: $\{\mathbf{f}_j \otimes \mathbf{g}_k \mid j=1,2,3;\ k=1,2,3,4\}$.
+
+\subsubsection*{4.2 Then $V_2 \otimes (V_3 \otimes V_4)$}
+\[
+\dim(V_2 \otimes (V_3 \otimes V_4)) = 2 \times 12 = 24.
+\]
+Basis: $\{\mathbf{e}_i \otimes (\mathbf{f}_j \otimes \mathbf{g}_k) \mid i=1,2;\ j=1,2,3;\ k=1,2,3,4\}$.
+
+The isomorphism identifies:
+\[
+(\mathbf{e}_i \otimes \mathbf{f}_j) \otimes \mathbf{g}_k \ \longleftrightarrow \ \mathbf{e}_i \otimes (\mathbf{f}_j \otimes \mathbf{g}_k).
+\]
+
+\subsection*{5. Concrete Example with Specific Vectors}
+
+Let:
+\begin{align*}
+\mathbf{v} &= \begin{pmatrix} 2 \\ -1 \end{pmatrix} \in V_2, \\
+\mathbf{w} &= \begin{pmatrix} 3 \\ 0 \\ 4 \end{pmatrix} \in V_3, \\
+\mathbf{u} &= \begin{pmatrix} 1 \\ -2 \\ 0 \\ 3 \end{pmatrix} \in V_4.
+\end{align*}
+
+\subsubsection*{5.1 Compute $(\mathbf{v} \otimes \mathbf{w}) \otimes \mathbf{u}$}
+
+First, compute $\mathbf{v} \otimes \mathbf{w}$ (from previous example):
+\[
+\mathbf{v} \otimes \mathbf{w} = \begin{pmatrix} 2\cdot3 \\ 2\cdot0 \\ 2\cdot4 \\ (-1)\cdot3 \\ (-1)\cdot0 \\ (-1)\cdot4 \end{pmatrix} = 
+\begin{pmatrix} 6 \\ 0 \\ 8 \\ -3 \\ 0 \\ -4 \end{pmatrix} \in V_2 \otimes V_3 \cong \mathbb{R}^6.
+\]
+
+Now tensor with $\mathbf{u}$:
+\[
+(\mathbf{v} \otimes \mathbf{w}) \otimes \mathbf{u} = \begin{pmatrix} 6 \\ 0 \\ 8 \\ -3 \\ 0 \\ -4 \end{pmatrix} \otimes \begin{pmatrix} 1 \\ -2 \\ 0 \\ 3 \end{pmatrix}.
+\]
+
+Using Kronecker product:
+\[
+(\mathbf{v} \otimes \mathbf{w}) \otimes \mathbf{u} = \begin{pmatrix}
+6\begin{pmatrix} 1 \\ -2 \\ 0 \\ 3 \end{pmatrix} \\
+0\begin{pmatrix} 1 \\ -2 \\ 0 \\ 3 \end{pmatrix} \\
+8\begin{pmatrix} 1 \\ -2 \\ 0 \\ 3 \end{pmatrix} \\
+-3\begin{pmatrix} 1 \\ -2 \\ 0 \\ 3 \end{pmatrix} \\
+0\begin{pmatrix} 1 \\ -2 \\ 0 \\ 3 \end{pmatrix} \\
+-4\begin{pmatrix} 1 \\ -2 \\ 0 \\ 3 \end{pmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
+6 \\ -12 \\ 0 \\ 18 \\
+0 \\ 0 \\ 0 \\ 0 \\
+8 \\ -16 \\ 0 \\ 24 \\
+-3 \\ 6 \\ 0 \\ -9 \\
+0 \\ 0 \\ 0 \\ 0 \\
+-4 \\ 8 \\ 0 \\ -12
+\end{pmatrix} \in \mathbb{R}^{24}.
+\]
+
+\subsubsection*{5.2 Compute $\mathbf{v} \otimes (\mathbf{w} \otimes \mathbf{u})$ (associative way)}
+
+First compute $\mathbf{w} \otimes \mathbf{u}$:
+\[
+\mathbf{w} \otimes \mathbf{u} = \begin{pmatrix} 3 \\ 0 \\ 4 \end{pmatrix} \otimes \begin{pmatrix} 1 \\ -2 \\ 0 \\ 3 \end{pmatrix} = 
+\begin{pmatrix}
+3\cdot1 \\ 3\cdot(-2) \\ 3\cdot0 \\ 3\cdot3 \\
+0\cdot1 \\ 0\cdot(-2) \\ 0\cdot0 \\ 0\cdot3 \\
+4\cdot1 \\ 4\cdot(-2) \\ 4\cdot0 \\ 4\cdot3
+\end{pmatrix} = 
+\begin{pmatrix}
+3 \\ -6 \\ 0 \\ 9 \\
+0 \\ 0 \\ 0 \\ 0 \\
+4 \\ -8 \\ 0 \\ 12
+\end{pmatrix} \in \mathbb{R}^{12}.
+\]
+
+Now tensor with $\mathbf{v}$:
+\[
+\mathbf{v} \otimes (\mathbf{w} \otimes \mathbf{u}) = \begin{pmatrix} 2 \\ -1 \end{pmatrix} \otimes \begin{pmatrix}
+3 \\ -6 \\ 0 \\ 9 \\
+0 \\ 0 \\ 0 \\ 0 \\
+4 \\ -8 \\ 0 \\ 12
+\end{pmatrix} = 
+\begin{pmatrix}
+2\begin{pmatrix} 3 \\ -6 \\ 0 \\ 9 \\ 0 \\ 0 \\ 0 \\ 0 \\ 4 \\ -8 \\ 0 \\ 12 \end{pmatrix} \\
+(-1)\begin{pmatrix} 3 \\ -6 \\ 0 \\ 9 \\ 0 \\ 0 \\ 0 \\ 0 \\ 4 \\ -8 \\ 0 \\ 12 \end{pmatrix}
+\end{pmatrix}.
+\]
+
+This gives the same 24-dimensional vector but with different grouping. Under the natural isomorphism, these represent the same element in $V_2 \otimes V_3 \otimes V_4$.
+
+\subsection*{6. Triple Tensor Product: $V_2 \otimes V_3 \otimes V_4$}
+
+The triple tensor product has a single basis:
+\[
+\{\mathbf{e}_i \otimes \mathbf{f}_j \otimes \mathbf{g}_k \mid i=1,2;\ j=1,2,3;\ k=1,2,3,4\}.
+\]
+
+Our example vector corresponds to:
+\[
+\mathbf{v} \otimes \mathbf{w} \otimes \mathbf{u} = (2\mathbf{e}_1 - \mathbf{e}_2) \otimes (3\mathbf{f}_1 + 4\mathbf{f}_3) \otimes (\mathbf{g}_1 - 2\mathbf{g}_2 + 3\mathbf{g}_4).
+\]
+
+Expanding:
+\begin{align*}
+\mathbf{v} \otimes \mathbf{w} \otimes \mathbf{u} = &2\cdot3\cdot1(\mathbf{e}_1 \otimes \mathbf{f}_1 \otimes \mathbf{g}_1) \\
+&+ 2\cdot3\cdot(-2)(\mathbf{e}_1 \otimes \mathbf{f}_1 \otimes \mathbf{g}_2) \\
+&+ 2\cdot3\cdot3(\mathbf{e}_1 \otimes \mathbf{f}_1 \otimes \mathbf{g}_4) \\
+&+ 2\cdot4\cdot1(\mathbf{e}_1 \otimes \mathbf{f}_3 \otimes \mathbf{g}_1) \\
+&+ 2\cdot4\cdot(-2)(\mathbf{e}_1 \otimes \mathbf{f}_3 \otimes \mathbf{g}_2) \\
+&+ 2\cdot4\cdot3(\mathbf{e}_1 \otimes \mathbf{f}_3 \otimes \mathbf{g}_4) \\
+&- 1\cdot3\cdot1(\mathbf{e}_2 \otimes \mathbf{f}_1 \otimes \mathbf{g}_1) \\
+&- 1\cdot3\cdot(-2)(\mathbf{e}_2 \otimes \mathbf{f}_1 \otimes \mathbf{g}_2) \\
+&- 1\cdot3\cdot3(\mathbf{e}_2 \otimes \mathbf{f}_1 \otimes \mathbf{g}_4) \\
+&- 1\cdot4\cdot1(\mathbf{e}_2 \otimes \mathbf{f}_3 \otimes \mathbf{g}_1) \\
+&- 1\cdot4\cdot(-2)(\mathbf{e}_2 \otimes \mathbf{f}_3 \otimes \mathbf{g}_2) \\
+&- 1\cdot4\cdot3(\mathbf{e}_2 \otimes \mathbf{f}_3 \otimes \mathbf{g}_4).
+\end{align*}
+
+\subsection*{7. Isomorphism with $\mathbb{R}^{24}$}
+
+There's a natural isomorphism $\phi: V_2 \otimes V_3 \otimes V_4 \to \mathbb{R}^{24}$ by ordering basis lexicographically:
+
+\[
+\phi(\mathbf{e}_i \otimes \mathbf{f}_j \otimes \mathbf{g}_k) = \text{standard basis vector } \mathbf{e}_{(i-1)\cdot12 + (j-1)\cdot4 + k} \in \mathbb{R}^{24}.
+\]
+
+More explicitly, index mapping:
+\[
+(i,j,k) \mapsto 12(i-1) + 4(j-1) + k.
+\]
+
+For example:
+\[
+(1,1,1) \mapsto 1, \quad (1,1,2) \mapsto 2, \quad \dots, \quad (2,3,4) \mapsto 24.
+\]
+
+\subsection*{8. Multilinearity Check}
+
+Tensor product of three spaces is \textbf{trilinear}:
+
+For $\mathbf{v}, \mathbf{v}' \in V_2$, $\mathbf{w} \in V_3$, $\mathbf{u} \in V_4$, $\alpha \in \mathbb{R}$:
+\[
+(\mathbf{v} + \mathbf{v}') \otimes \mathbf{w} \otimes \mathbf{u} = \mathbf{v} \otimes \mathbf{w} \otimes \mathbf{u} + \mathbf{v}' \otimes \mathbf{w} \otimes \mathbf{u},
+\]
+\[
+(\alpha\mathbf{v}) \otimes \mathbf{w} \otimes \mathbf{u} = \alpha(\mathbf{v} \otimes \mathbf{w} \otimes \mathbf{u}).
+\]
+\end{document}
