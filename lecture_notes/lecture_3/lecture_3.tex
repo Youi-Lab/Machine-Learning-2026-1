@@ -10,6 +10,7 @@
 \usepackage{microtype}
 \usepackage{enumitem}
 \usepackage{amsmath}
+\usepackage{bm}
 
 
 % Set up the images/graphics package
@@ -471,9 +472,485 @@ Students enrolled in the DIAA are required to present a final project. The proje
 \end{itemize}
 
 
-\vspace{1cm}
+\section{Appendix}
+
+For a function $f(u_1, u_2, \ldots, u_N)$ where each $u_i = u_i(w_1, w_2, \ldots, w_M)$ for $i = 1, 2, \ldots, N$, the partial derivative with respect to $w_j$ (where $j = 1, 2, \ldots, M$) is given by:
+
+\[
+\frac{\partial f}{\partial w_j} = \sum_{i=1}^{N} \frac{\partial f}{\partial u_i} \cdot \frac{\partial u_i}{\partial w_j}
+\]
+
+Alternatively, written with explicit function notation:
+
+\[
+\frac{\partial}{\partial w_j} f\big(u_1(w_1,\ldots,w_M), u_2(w_1,\ldots,w_M), \ldots, u_N(w_1,\ldots,w_M)\big) = \sum_{i=1}^{N} \frac{\partial f}{\partial u_i} \cdot \frac{\partial u_i}{\partial w_j}
+\]
+
+If we assume that repeated indices imply summation over the repeated index (Einstein notation) 
+
+\[
+\frac{\partial f}{\partial w_j} = \frac{\partial f}{\partial u_i} \cdot \frac{\partial u_i}{\partial w_j}
+\]
+
+\subsection{Example 1}
 
 
+Given:
+\begin{align*}
+z &= z(u_1, u_2) = u_1 + u_2 \\
+u_1 &= u_1(w_1, w_2) = w_1^2 + w_2^2 \\
+u_2 &= u_2(w_1, w_2) = w_1^2 - w_2^2 + w_1 w_2
+\end{align*}
+
+\subsection*{Step 1: Compute partial derivatives of $z$ with respect to $u_1$ and $u_2$}
+
+\[
+\frac{\partial z}{\partial u_1} = \frac{\partial}{\partial u_1}(u_1 + u_2) = 1
+\]
+\[
+\frac{\partial z}{\partial u_2} = \frac{\partial}{\partial u_2}(u_1 + u_2) = 1
+\]
+
+\subsection*{Step 2: Compute partial derivatives of $u_1$ with respect to $w_1$ and $w_2$}
+
+\[
+\frac{\partial u_1}{\partial w_1} = \frac{\partial}{\partial w_1}(w_1^2 + w_2^2) = 2w_1
+\]
+\[
+\frac{\partial u_1}{\partial w_2} = \frac{\partial}{\partial w_2}(w_1^2 + w_2^2) = 2w_2
+\]
+
+\subsection*{Step 3: Compute partial derivatives of $u_2$ with respect to $w_1$ and $w_2$}
+
+\[
+\frac{\partial u_2}{\partial w_1} = \frac{\partial}{\partial w_1}(w_1^2 - w_2^2 + w_1 w_2) = 2w_1 + w_2
+\]
+\[
+\frac{\partial u_2}{\partial w_2} = \frac{\partial}{\partial w_2}(w_1^2 - w_2^2 + w_1 w_2) = -2w_2 + w_1
+\]
+
+\subsection*{Step 4: Apply the chain rule for $\frac{\partial z}{\partial w_1}$}
+
+Using the chain rule:
+\[
+\frac{\partial z}{\partial w_1} = \frac{\partial z}{\partial u_1}\frac{\partial u_1}{\partial w_1} + \frac{\partial z}{\partial u_2}\frac{\partial u_2}{\partial w_1}
+\]
+
+Substituting the values:
+\[
+\frac{\partial z}{\partial w_1} = (1)(2w_1) + (1)(2w_1 + w_2)
+\]
+
+Simplifying:
+\[
+\frac{\partial z}{\partial w_1} = 2w_1 + 2w_1 + w_2 = 4w_1 + w_2
+\]
+
+\subsection*{Step 5: Apply the chain rule for $\frac{\partial z}{\partial w_2}$}
+
+Using the chain rule:
+\[
+\frac{\partial z}{\partial w_2} = \frac{\partial z}{\partial u_1}\frac{\partial u_1}{\partial w_2} + \frac{\partial z}{\partial u_2}\frac{\partial u_2}{\partial w_2}
+\]
+
+Substituting the values:
+\[
+\frac{\partial z}{\partial w_2} = (1)(2w_2) + (1)(-2w_2 + w_1)
+\]
+
+Simplifying:
+\[
+\frac{\partial z}{\partial w_2} = 2w_2 - 2w_2 + w_1 = w_1
+\]
+
+The final results is:
+
+\[
+\boxed{\frac{\partial z}{\partial w_1} = 4w_1 + w_2}
+\]
+\[
+\boxed{\frac{\partial z}{\partial w_2} = w_1}
+\]
+
+
+Based on the previous results:
+\[
+\frac{\partial z}{\partial w_1} = 4w_1 + w_2
+\]
+\[
+\frac{\partial z}{\partial w_2} = w_1
+\]
+
+The gradient of $z$ with respect to $\mathbf{w} = \begin{bmatrix} w_1 \\ w_2 \end{bmatrix}$ is:
+
+\[
+\nabla_{\mathbf{w}} z = \begin{bmatrix} 
+\dfrac{\partial z}{\partial w_1} \\[1em]
+\dfrac{\partial z}{\partial w_2}
+\end{bmatrix} = \begin{bmatrix}
+4w_1 + w_2 \\
+w_1
+\end{bmatrix}
+\]
+
+Alternatively, written as a column vector:
+
+\[
+\nabla_{\mathbf{w}} z = \begin{pmatrix} 
+4w_1 + w_2 \\
+w_1
+\end{pmatrix}
+\]
+
+Or using the del operator notation:
+
+\[
+\vec{\nabla} z = \begin{bmatrix} 
+\frac{\partial z}{\partial w_1} \\
+\frac{\partial z}{\partial w_2}
+\end{bmatrix} = \begin{bmatrix}
+4w_1 + w_2 \\
+w_1
+\end{bmatrix}
+\]
+
+\subsection{Example 2}
+
+Given:
+\begin{align*}
+z &= z(u, v) = u + v \\
+u &= u(r, s) = r^2 + s^2 \\
+v &= v(r, s) = r^2 - s^2 + rs
+\end{align*}
+
+\subsection*{Step 1: Compute partial derivatives of $z$ with respect to $u$ and $v$}
+
+\[
+\frac{\partial z}{\partial u} = \frac{\partial}{\partial u}(u + v) = 1
+\]
+\[
+\frac{\partial z}{\partial v} = \frac{\partial}{\partial v}(u + v) = 1
+\]
+
+\subsection*{Step 2: Compute partial derivatives of $u$ with respect to $r$ and $s$}
+
+\[
+\frac{\partial u}{\partial r} = \frac{\partial}{\partial r}(r^2 + s^2) = 2r
+\]
+\[
+\frac{\partial u}{\partial s} = \frac{\partial}{\partial s}(r^2 + s^2) = 2s
+\]
+
+\subsection*{Step 3: Compute partial derivatives of $v$ with respect to $r$ and $s$}
+
+\[
+\frac{\partial v}{\partial r} = \frac{\partial}{\partial r}(r^2 - s^2 + rs) = 2r + s
+\]
+\[
+\frac{\partial v}{\partial s} = \frac{\partial}{\partial s}(r^2 - s^2 + rs) = -2s + r
+\]
+
+\subsection*{Step 4: Apply the chain rule for $\frac{\partial z}{\partial r}$}
+
+Using the chain rule:
+\[
+\frac{\partial z}{\partial r} = \frac{\partial z}{\partial u}\frac{\partial u}{\partial r} + \frac{\partial z}{\partial v}\frac{\partial v}{\partial r}
+\]
+
+Substituting the values:
+\[
+\frac{\partial z}{\partial r} = (1)(2r) + (1)(2r + s)
+\]
+
+Simplifying:
+\[
+\frac{\partial z}{\partial r} = 2r + 2r + s = 4r + s
+\]
+
+\subsection*{Step 5: Apply the chain rule for $\frac{\partial z}{\partial s}$}
+
+Using the chain rule:
+\[
+\frac{\partial z}{\partial s} = \frac{\partial z}{\partial u}\frac{\partial u}{\partial s} + \frac{\partial z}{\partial v}\frac{\partial v}{\partial s}
+\]
+
+Substituting the values:
+\[
+\frac{\partial z}{\partial s} = (1)(2s) + (1)(-2s + r)
+\]
+
+Simplifying:
+\[
+\frac{\partial z}{\partial s} = 2s - 2s + r = r
+\]
+
+\section*{Step 6: Write the gradient of $z$ with respect to $r$ and $s$}
+
+\[
+\nabla z = \begin{bmatrix} 
+\dfrac{\partial z}{\partial r} \\[1em]
+\dfrac{\partial z}{\partial s}
+\end{bmatrix} = \begin{bmatrix}
+4r + s \\
+r
+\end{bmatrix}
+\]
+
+The final results is:
+
+\[
+\boxed{\frac{\partial z}{\partial r} = 4r + s}
+\]
+\[
+\boxed{\frac{\partial z}{\partial s} = r}
+\]
+\[
+\boxed{\nabla z = \begin{bmatrix} 4r + s \\ r \end{bmatrix}}
+\]
+
+\subsection{Example: Multilayer Perceptron}
+
+
+Forward propagation:
+\begin{align*}
+a_i &= \sum_{j=1}^3 w_{ij}x_j, \quad i = 1,2,3 \\
+z_i &= \sigma(a_i) \\
+b_l &= \sum_{j=1}^3 v_{lj}z_j, \quad l = 1,2 \\
+c &= u_1b_1 + u_2b_2 \\
+y &= \sigma(c)
+\end{align*}
+
+where $\sigma(x) = \frac{1}{1+e^{-x}}$ is the sigmoid function, with derivative $\sigma'(x) = \sigma(x)(1-\sigma(x))$.
+
+
+Let $\bm{\theta}$ denote the vector of all parameters in the network:
+
+\[
+\bm{\theta} = \{ \bm{w}_1, \bm{w}_2, \bm{w}_3, \bm{v}_1, \bm{v}_2, u_1, u_2 \}
+\]
+
+where:
+\begin{align*}
+\bm{w}_i &= [w_{i1}, w_{i2}, w_{i3}]^T \in \mathbb{R}^3, \quad i=1,2,3 \\
+\bm{v}_l &= [v_{l1}, v_{l2}, v_{l3}]^T \in \mathbb{R}^3, \quad l=1,2 \\
+u_1, u_2 &\in \mathbb{R}
+\end{align*}
+
+
+
+We want to comput he gradient of $y$ with respect to all parameters:
+
+\[
+\nabla_{\bm{\theta}} y = 
+\begin{bmatrix}
+\nabla_{\bm{w}_1} y \\
+\nabla_{\bm{w}_2} y \\
+\nabla_{\bm{w}_3} y \\
+\nabla_{\bm{v}_1} y \\
+\nabla_{\bm{v}_2} y \\
+\dfrac{\partial y}{\partial u_1} \\
+\dfrac{\partial y}{\partial u_2}
+\end{bmatrix}
+\in \mathbb{R}^{3 \times 3 + 2 \times 3 + 2} = \mathbb{R}^{17}
+\]
+
+We just need to apply the chain rule layer by layer.
+
+\subsection*{Backpropagation: Computing Gradients}
+
+\subsection*{Step 1: Output layer gradient}
+
+Define the error signal at the output:
+\[
+\delta_y = \frac{\partial y}{\partial c} = y(1-y)
+\]
+
+\subsection*{Step 2: Gradients with respect to $u_l$}
+
+Using the chain rule:
+\[
+\frac{\partial y}{\partial u_l} = \frac{\partial y}{\partial c} \cdot \frac{\partial c}{\partial u_l} = \delta_y \cdot b_l
+\]
+
+Therefore:
+\[
+\boxed{\frac{\partial y}{\partial u_l} = y(1-y) \cdot b_l}
+\]
+
+\subsection*{Step 3: Backpropagate to the $b_l$ layer}
+
+Define the error signal at $b_l$:
+\[
+\delta_{b_l} = \frac{\partial y}{\partial b_l} = \frac{\partial y}{\partial c} \cdot \frac{\partial c}{\partial b_l} = \delta_y \cdot u_l
+\]
+
+\subsection*{Step 4: Gradients with respect to $v_{lj}$}
+
+Using the chain rule:
+\[
+\frac{\partial y}{\partial v_{lj}} = \frac{\partial y}{\partial b_l} \cdot \frac{\partial b_l}{\partial v_{lj}} = \delta_{b_l} \cdot z_j
+\]
+
+Substituting $\delta_{b_l} = \delta_y \cdot u_l$:
+\[
+\boxed{\frac{\partial y}{\partial v_{lj}} = y(1-y) \cdot u_l \cdot z_j}
+\]
+
+\subsection*{Step 5: Backpropagate to the $z_i$ layer}
+
+Define the error signal at $z_i$:
+\[
+\delta_{z_i} = \sum_{l=1}^2 \frac{\partial y}{\partial b_l} \cdot \frac{\partial b_l}{\partial z_i} = \sum_{l=1}^2 \delta_{b_l} \cdot v_{li}
+\]
+
+Substituting $\delta_{b_l} = \delta_y \cdot u_l$:
+\[
+\delta_{z_i} = \delta_y \sum_{l=1}^2 u_l v_{li}
+\]
+
+\subsection*{Step 6: Backpropagate through the sigmoid at $z_i$}
+
+The error signal at $a_i$ (pre-activation) is:
+\[
+\delta_{a_i} = \delta_{z_i} \cdot \frac{\partial z_i}{\partial a_i} = \delta_{z_i} \cdot z_i(1-z_i)
+\]
+
+Substituting $\delta_{z_i}$:
+\[
+\delta_{a_i} = \delta_y \left(\sum_{l=1}^2 u_l v_{li}\right) \cdot z_i(1-z_i)
+\]
+
+\subsection*{Step 7: Gradients with respect to $w_{ij}$}
+
+Using the chain rule:
+\[
+\frac{\partial y}{\partial w_{ij}} = \frac{\partial y}{\partial a_i} \cdot \frac{\partial a_i}{\partial w_{ij}} = \delta_{a_i} \cdot x_j
+\]
+
+Substituting $\delta_{a_i}$:
+\[
+\boxed{\frac{\partial y}{\partial w_{ij}} = y(1-y) \cdot z_i(1-z_i) \cdot x_j \cdot \sum_{l=1}^2 u_l v_{li}}
+\]
+
+\subsection*{Summary Network Parameters and Gradient}
+
+
+\subsection*{Individual Gradient Components}
+
+\subsection*{Gradients with respect to input-to-hidden weights $\bm{w}_i$}
+
+For $i = 1,2,3$:
+\[
+\nabla_{\bm{w}_i} y = 
+\underbrace{y(1-y)}_{\text{output error}} \cdot 
+\underbrace{z_i(1-z_i)}_{\text{hidden layer derivative}} \cdot 
+\underbrace{\left(\sum_{l=1}^2 u_l v_{li}\right)}_{\text{backpropagated error}} \cdot 
+\underbrace{\bm{x}}_{\text{input}}
+\]
+
+Expanded form:
+\[
+\nabla_{\bm{w}_i} y = y(1-y) \, z_i(1-z_i) \left(\sum_{l=1}^2 u_l v_{li}\right) 
+\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+\]
+
+\subsection*{Gradients with respect to hidden-to-output weights $\bm{v}_l$}
+
+For $l = 1,2$:
+\[
+\nabla_{\bm{v}_l} y = 
+\underbrace{y(1-y)}_{\text{output error}} \cdot 
+\underbrace{u_l}_{\text{path weight}} \cdot 
+\underbrace{\bm{z}}_{\text{hidden activations}}
+\]
+
+Expanded form:
+\[
+\nabla_{\bm{v}_l} y = y(1-y) \, u_l 
+\begin{bmatrix} z_1 \\ z_2 \\ z_3 \end{bmatrix}
+\]
+
+\subsection*{Gradients with respect to output weights $u_l$}
+
+For $l = 1,2$:
+\[
+\frac{\partial y}{\partial u_l} = 
+\underbrace{y(1-y)}_{\text{output error}} \cdot 
+\underbrace{b_l}_{\text{hidden layer output}}
+\]
+
+\section*{Complete Gradient Vector (Explicit Form)}
+
+\[
+\nabla_{\bm{\theta}} y = 
+\begin{bmatrix}
+y(1-y) \, z_1(1-z_1) \left(\sum_{l=1}^2 u_l v_{l1}\right) x_1 \\
+y(1-y) \, z_1(1-z_1) \left(\sum_{l=1}^2 u_l v_{l1}\right) x_2 \\
+y(1-y) \, z_1(1-z_1) \left(\sum_{l=1}^2 u_l v_{l1}\right) x_3 \\[0.5em]
+y(1-y) \, z_2(1-z_2) \left(\sum_{l=1}^2 u_l v_{l2}\right) x_1 \\
+y(1-y) \, z_2(1-z_2) \left(\sum_{l=1}^2 u_l v_{l2}\right) x_2 \\
+y(1-y) \, z_2(1-z_2) \left(\sum_{l=1}^2 u_l v_{l2}\right) x_3 \\[0.5em]
+y(1-y) \, z_3(1-z_3) \left(\sum_{l=1}^2 u_l v_{l3}\right) x_1 \\
+y(1-y) \, z_3(1-z_3) \left(\sum_{l=1}^2 u_l v_{l3}\right) x_2 \\
+y(1-y) \, z_3(1-z_3) \left(\sum_{l=1}^2 u_l v_{l3}\right) x_3 \\[0.5em]
+y(1-y) \, u_1 z_1 \\
+y(1-y) \, u_1 z_2 \\
+y(1-y) \, u_1 z_3 \\[0.5em]
+y(1-y) \, u_2 z_1 \\
+y(1-y) \, u_2 z_2 \\
+y(1-y) \, u_2 z_3 \\[0.5em]
+y(1-y) \, b_1 \\
+y(1-y) \, b_2
+\end{bmatrix}
+\]
+
+\section*{Gradient Structure by Layer}
+
+\subsection*{Input-to-Hidden Layer Gradients ($\bm{w}$-parameters)}
+\[
+\nabla_{\bm{W}} y = y(1-y) \cdot 
+\begin{bmatrix}
+z_1(1-z_1)\left(\sum_{l} u_l v_{l1}\right) \bm{x}^T \\
+z_2(1-z_2)\left(\sum_{l} u_l v_{l2}\right) \bm{x}^T \\
+z_3(1-z_3)\left(\sum_{l} u_l v_{l3}\right) \bm{x}^T
+\end{bmatrix}
+\in \mathbb{R}^{3 \times 3}
+\]
+
+\subsection*{Hidden-to-Output Layer Gradients ($\bm{v}$-parameters)}
+\[
+\nabla_{\bm{V}} y = y(1-y) \cdot 
+\begin{bmatrix}
+u_1 \bm{z}^T \\
+u_2 \bm{z}^T
+\end{bmatrix}
+\in \mathbb{R}^{2 \times 3}
+\]
+
+\subsection*{Output Layer Gradients ($\bm{u}$-parameters)}
+\[
+\nabla_{\bm{u}} y = y(1-y) \cdot \bm{b} \in \mathbb{R}^2
+\]
+
+\section*{Compact Vectorized Form}
+
+Let $\bm{W} \in \mathbb{R}^{3 \times 3}$ with rows $\bm{w}_i^T$, $\bm{V} \in \mathbb{R}^{2 \times 3}$ with rows $\bm{v}_l^T$, and $\bm{u} \in \mathbb{R}^2$.
+
+Define:
+\begin{align*}
+\bm{d}_z &= \bm{z} \odot (\bm{1} - \bm{z}) \quad \text{(element-wise product)} \\
+\bm{e} &= \bm{u}^T \bm{V} \in \mathbb{R}^{3} \quad \text{(error backpropagated to hidden layer)} \\
+\delta &= y(1-y)
+\end{align*}
+
+Then:
+\begin{align*}
+\nabla_{\bm{W}} y &= \delta \cdot \text{diag}(\bm{d}_z \odot \bm{e}) \cdot \bm{x}^T \\
+\nabla_{\bm{V}} y &= \delta \cdot \bm{u} \bm{z}^T \\
+\nabla_{\bm{u}} y &= \delta \cdot \bm{b}
+\end{align*}
+
+where $\text{diag}(\bm{v})$ creates a diagonal matrix from vector $\bm{v}$.
 
 \vspace{1cm}
 
