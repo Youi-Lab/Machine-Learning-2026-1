@@ -1,0 +1,300 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{enumitem}
+
+\begin{document}
+
+\title{Coordinate-Based Backpropagation with Explicit Chain Rule}
+\author{}
+\date{}
+\maketitle
+
+\section{Network Architecture with Bias as Coefficient (Coordinate Form)}
+
+\textbf{Inputs:} \( x_0 = 1 \) (bias), \( x_1, x_2 \) (features)
+
+\textbf{First hidden layer (4 neurons):}
+For \( j = 1,2,3,4 \):
+\[
+z_j^{(1)} = \sum_{i=0}^{2} w_{ji}^{(1)} x_i
+\]
+where \( w_{j0}^{(1)} \) is the bias term, \( w_{j1}^{(1)} \) and \( w_{j2}^{(1)} \) are weights from inputs
+\[
+h_j^{(1)} = \sigma(z_j^{(1)}) = \frac{1}{1 + e^{-z_j^{(1)}}}
+\]
+
+\textbf{Second hidden layer (2 neurons):}
+Let \( h_0^{(1)} = 1 \) (bias for next layer)
+For \( k = 1,2 \):
+\[
+z_k^{(2)} = \sum_{j=0}^{4} w_{kj}^{(2)} h_j^{(1)}
+\]
+where \( w_{k0}^{(2)} \) is the bias term, \( w_{k1}^{(2)}, w_{k2}^{(2)}, w_{k3}^{(2)}, w_{k4}^{(2)} \) are weights from first hidden layer
+\[
+h_k^{(2)} = \sigma(z_k^{(2)})
+\]
+
+\textbf{Output layer (1 neuron):}
+Let \( h_0^{(2)} = 1 \) (bias for output)
+\[
+z^{(3)} = \sum_{m=0}^{2} w_m^{(3)} h_m^{(2)}
+\]
+where \( w_0^{(3)} \) is the bias term, \( w_1^{(3)} \) and \( w_2^{(3)} \) are weights from second hidden layer
+\[
+y = \sigma(z^{(3)})
+\]
+
+\textbf{Loss:}
+\[
+L = (y - y_t)^2
+\]
+
+\section{Output Layer Gradients Using Chain Rule}
+
+\textbf{Step 1:} Compute \( \frac{\partial L}{\partial y} \):
+\[
+\frac{\partial L}{\partial y} = 2(y - y_t)
+\]
+
+\textbf{Step 2:} Compute \( \frac{\partial y}{\partial z^{(3)}} \):
+\[
+\frac{\partial y}{\partial z^{(3)}} = \sigma'(z^{(3)}) = y(1-y)
+\]
+
+\textbf{Step 3:} Apply chain rule for \( \frac{\partial L}{\partial z^{(3)}} \):
+\[
+\frac{\partial L}{\partial z^{(3)}} = \frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial z^{(3)}} = 2(y - y_t) \cdot y(1-y)
+\]
+Define: \( \delta^{(3)} \equiv \frac{\partial L}{\partial z^{(3)}} \)
+
+\textbf{Step 4:} Compute \( \frac{\partial z^{(3)}}{\partial w_m^{(3)}} \):
+\[
+z^{(3)} = w_0^{(3)} \cdot 1 + w_1^{(3)} h_1^{(2)} + w_2^{(3)} h_2^{(2)}
+\]
+\[
+\frac{\partial z^{(3)}}{\partial w_m^{(3)}} = h_m^{(2)} \quad \text{for } m = 0,1,2
+\]
+
+\textbf{Step 5:} Apply chain rule for gradients:
+\[
+\frac{\partial L}{\partial w_m^{(3)}} = \frac{\partial L}{\partial z^{(3)}} \cdot \frac{\partial z^{(3)}}{\partial w_m^{(3)}} = \delta^{(3)} \cdot h_m^{(2)}
+\]
+
+\textbf{Explicitly:}
+\[
+\frac{\partial L}{\partial w_0^{(3)}} = \delta^{(3)} \cdot 1
+\]
+\[
+\frac{\partial L}{\partial w_1^{(3)}} = \delta^{(3)} \cdot h_1^{(2)}
+\]
+\[
+\frac{\partial L}{\partial w_2^{(3)}} = \delta^{(3)} \cdot h_2^{(2)}
+\]
+
+\section{Backpropagation to Second Hidden Layer}
+
+\textbf{Step 1:} Compute \( \frac{\partial L}{\partial h_k^{(2)}} \) using chain rule:
+
+We need \( \frac{\partial z^{(3)}}{\partial h_k^{(2)}} \):
+\[
+z^{(3)} = w_0^{(3)} + w_1^{(3)} h_1^{(2)} + w_2^{(3)} h_2^{(2)}
+\]
+\[
+\frac{\partial z^{(3)}}{\partial h_1^{(2)}} = w_1^{(3)}
+\]
+\[
+\frac{\partial z^{(3)}}{\partial h_2^{(2)}} = w_2^{(3)}
+\]
+
+Apply chain rule:
+\[
+\frac{\partial L}{\partial h_k^{(2)}} = \frac{\partial L}{\partial z^{(3)}} \cdot \frac{\partial z^{(3)}}{\partial h_k^{(2)}} = \delta^{(3)} \cdot w_k^{(3)}
+\]
+for \( k = 1,2 \)
+
+\textbf{Step 2:} Compute \( \frac{\partial h_k^{(2)}}{\partial z_k^{(2)}} \):
+\[
+\frac{\partial h_k^{(2)}}{\partial z_k^{(2)}} = \sigma'(z_k^{(2)}) = h_k^{(2)}(1 - h_k^{(2)})
+\]
+
+\textbf{Step 3:} Apply chain rule for \( \frac{\partial L}{\partial z_k^{(2)}} \):
+\[
+\frac{\partial L}{\partial z_k^{(2)}} = \frac{\partial L}{\partial h_k^{(2)}} \cdot \frac{\partial h_k^{(2)}}{\partial z_k^{(2)}} = \left[ \delta^{(3)} \cdot w_k^{(3)} \right] \cdot h_k^{(2)}(1 - h_k^{(2)})
+\]
+Define: \( \delta_k^{(2)} \equiv \frac{\partial L}{\partial z_k^{(2)}} \) for \( k = 1,2 \)
+
+\textbf{Explicitly:}
+\[
+\delta_1^{(2)} = \delta^{(3)} w_1^{(3)} \cdot h_1^{(2)}(1 - h_1^{(2)})
+\]
+\[
+\delta_2^{(2)} = \delta^{(3)} w_2^{(3)} \cdot h_2^{(2)}(1 - h_2^{(2)})
+\]
+
+\textbf{Step 4:} Compute \( \frac{\partial z_k^{(2)}}{\partial w_{kj}^{(2)}} \):
+\[
+z_k^{(2)} = \sum_{j=0}^{4} w_{kj}^{(2)} h_j^{(1)}
+\]
+\[
+\frac{\partial z_k^{(2)}}{\partial w_{kj}^{(2)}} = h_j^{(1)}
+\]
+
+\textbf{Step 5:} Apply chain rule for gradients:
+\[
+\frac{\partial L}{\partial w_{kj}^{(2)}} = \frac{\partial L}{\partial z_k^{(2)}} \cdot \frac{\partial z_k^{(2)}}{\partial w_{kj}^{(2)}} = \delta_k^{(2)} \cdot h_j^{(1)}
+\]
+
+\textbf{Explicitly for each case:}
+
+For bias terms (j = 0):
+\[
+\frac{\partial L}{\partial w_{k0}^{(2)}} = \delta_k^{(2)} \cdot 1
+\]
+
+For weights from hidden neurons (j = 1,2,3,4):
+\[
+\frac{\partial L}{\partial w_{kj}^{(2)}} = \delta_k^{(2)} \cdot h_j^{(1)}
+\]
+
+\section{Backpropagation to First Hidden Layer}
+
+\textbf{Step 1:} Compute \( \frac{\partial L}{\partial h_j^{(1)}} \) using chain rule (sum over all paths):
+
+We have \( h_j^{(1)} \) affecting both \( z_1^{(2)} \) and \( z_2^{(2)} \):
+\[
+\frac{\partial L}{\partial h_j^{(1)}} = \sum_{k=1}^{2} \frac{\partial L}{\partial z_k^{(2)}} \cdot \frac{\partial z_k^{(2)}}{\partial h_j^{(1)}}
+\]
+
+First, compute \( \frac{\partial z_k^{(2)}}{\partial h_j^{(1)}} \):
+\[
+z_k^{(2)} = w_{k0}^{(2)} \cdot 1 + \sum_{i=1}^{4} w_{ki}^{(2)} h_i^{(1)}
+\]
+\[
+\frac{\partial z_k^{(2)}}{\partial h_j^{(1)}} = w_{kj}^{(2)} \quad \text{for } j = 1,2,3,4
+\]
+
+Therefore:
+\[
+\frac{\partial L}{\partial h_j^{(1)}} = \sum_{k=1}^{2} \delta_k^{(2)} \cdot w_{kj}^{(2)} \quad \text{for } j = 1,2,3,4
+\]
+
+\textbf{Step 2:} Compute \( \frac{\partial h_j^{(1)}}{\partial z_j^{(1)}} \):
+\[
+\frac{\partial h_j^{(1)}}{\partial z_j^{(1)}} = \sigma'(z_j^{(1)}) = h_j^{(1)}(1 - h_j^{(1)})
+\]
+
+\textbf{Step 3:} Apply chain rule for \( \frac{\partial L}{\partial z_j^{(1)}} \):
+\[
+\frac{\partial L}{\partial z_j^{(1)}} = \frac{\partial L}{\partial h_j^{(1)}} \cdot \frac{\partial h_j^{(1)}}{\partial z_j^{(1)}} = \left( \sum_{k=1}^{2} \delta_k^{(2)} w_{kj}^{(2)} \right) \cdot h_j^{(1)}(1 - h_j^{(1)})
+\]
+Define: \( \delta_j^{(1)} \equiv \frac{\partial L}{\partial z_j^{(1)}} \) for \( j = 1,2,3,4 \)
+
+\textbf{Explicitly:}
+\[
+\delta_1^{(1)} = (\delta_1^{(2)} w_{11}^{(2)} + \delta_2^{(2)} w_{21}^{(2)}) \cdot h_1^{(1)}(1 - h_1^{(1)})
+\]
+\[
+\delta_2^{(1)} = (\delta_1^{(2)} w_{12}^{(2)} + \delta_2^{(2)} w_{22}^{(2)}) \cdot h_2^{(1)}(1 - h_2^{(1)})
+\]
+\[
+\delta_3^{(1)} = (\delta_1^{(2)} w_{13}^{(2)} + \delta_2^{(2)} w_{23}^{(2)}) \cdot h_3^{(1)}(1 - h_3^{(1)})
+\]
+\[
+\delta_4^{(1)} = (\delta_1^{(2)} w_{14}^{(2)} + \delta_2^{(2)} w_{24}^{(2)}) \cdot h_4^{(1)}(1 - h_4^{(1)})
+\]
+
+\textbf{Step 4:} Compute \( \frac{\partial z_j^{(1)}}{\partial w_{ji}^{(1)}} \):
+\[
+z_j^{(1)} = \sum_{i=0}^{2} w_{ji}^{(1)} x_i
+\]
+\[
+\frac{\partial z_j^{(1)}}{\partial w_{ji}^{(1)}} = x_i
+\]
+
+\textbf{Step 5:} Apply chain rule for gradients:
+\[
+\frac{\partial L}{\partial w_{ji}^{(1)}} = \frac{\partial L}{\partial z_j^{(1)}} \cdot \frac{\partial z_j^{(1)}}{\partial w_{ji}^{(1)}} = \delta_j^{(1)} \cdot x_i
+\]
+
+\textbf{Explicitly for each case:}
+
+For bias terms (i = 0):
+\[
+\frac{\partial L}{\partial w_{j0}^{(1)}} = \delta_j^{(1)} \cdot 1
+\]
+
+For weights from inputs (i = 1,2):
+\[
+\frac{\partial L}{\partial w_{j1}^{(1)}} = \delta_j^{(1)} \cdot x_1
+\]
+\[
+\frac{\partial L}{\partial w_{j2}^{(1)}} = \delta_j^{(1)} \cdot x_2
+\]
+
+\section{Complete Chain Rule Expansion}
+
+For weight \( w_{ji}^{(1)} \) (connecting input \( x_i \) to neuron \( j \) in layer 1):
+
+\[
+\frac{\partial L}{\partial w_{ji}^{(1)}} = \underbrace{2(y - y_t)}_{\frac{\partial L}{\partial y}} \cdot \underbrace{y(1-y)}_{\frac{\partial y}{\partial z^{(3)}}} \cdot \underbrace{w_j^{(3)}}_{\frac{\partial z^{(3)}}{\partial h_j^{(2)}}} \cdot \underbrace{h_j^{(2)}(1 - h_j^{(2)})}_{\frac{\partial h_j^{(2)}}{\partial z_j^{(2)}}} \cdot \underbrace{w_{ji}^{(2)}}_{\frac{\partial z_j^{(2)}}{\partial h_i^{(1)}}} \cdot \underbrace{h_i^{(1)}(1 - h_i^{(1)})}_{\frac{\partial h_i^{(1)}}{\partial z_i^{(1)}}} \cdot \underbrace{x_j}_{\frac{\partial z_i^{(1)}}{\partial w_{ij}^{(1)}}}
+\]
+
+The full chain rule with summation over paths:
+
+\[
+\frac{\partial L}{\partial w_{ji}^{(1)}} = \left[ 2(y - y_t) y(1-y) \right] \cdot \left[ w_1^{(3)} h_1^{(2)}(1 - h_1^{(2)}) w_{1j}^{(2)} + w_2^{(3)} h_2^{(2)}(1 - h_2^{(2)}) w_{2j}^{(2)} \right] \cdot \left[ h_j^{(1)}(1 - h_j^{(1)}) x_i \right]
+\]
+
+This matches the recursive delta formulation:
+\[
+\frac{\partial L}{\partial w_{ji}^{(1)}} = \underbrace{\left[ \sum_{k=1}^{2} \delta_k^{(2)} w_{kj}^{(2)} \right] \cdot h_j^{(1)}(1 - h_j^{(1)})}_{\delta_j^{(1)}} \cdot x_i
+\]
+
+\section{Summary of All Gradients (Coordinate Form)}
+
+\subsection*{Output layer (m = 0,1,2):}
+\[
+\boxed{\delta^{(3)} = 2(y - y_t) \cdot y(1-y)}
+\]
+\[
+\boxed{\frac{\partial L}{\partial w_m^{(3)}} = \delta^{(3)} \cdot h_m^{(2)}}
+\]
+
+\subsection*{Second hidden layer (k = 1,2; j = 0,1,2,3,4):}
+\[
+\boxed{\delta_k^{(2)} = \delta^{(3)} w_k^{(3)} \cdot h_k^{(2)}(1 - h_k^{(2)})}
+\]
+\[
+\boxed{\frac{\partial L}{\partial w_{kj}^{(2)}} = \delta_k^{(2)} \cdot h_j^{(1)}}
+\]
+
+\subsection*{First hidden layer (j = 1,2,3,4; i = 0,1,2):}
+\[
+\boxed{\delta_j^{(1)} = \left( \sum_{k=1}^{2} \delta_k^{(2)} w_{kj}^{(2)} \right) \cdot h_j^{(1)}(1 - h_j^{(1)})}
+\]
+\[
+\boxed{\frac{\partial L}{\partial w_{ji}^{(1)}} = \delta_j^{(1)} \cdot x_i}
+\]
+
+\section{Key Observations}
+
+\begin{enumerate}
+    \item \textbf{Chain rule application:} Each \( \delta \) captures the partial derivative of loss with respect to pre-activation at that layer
+    
+    \item \textbf{Error propagation:} 
+    \[
+    \delta_j^{(l)} = \left( \sum_{\text{next layer}} \delta_{\text{next}}^{(l+1)} \cdot w_{\text{next},j}^{(l+1)} \right) \cdot \sigma'(z_j^{(l)})
+    \]
+    
+    \item \textbf{Gradient computation:} 
+    \[
+    \frac{\partial L}{\partial w_{ji}^{(l)}} = \delta_j^{(l)} \cdot \text{input}_i^{(l)}
+    \]
+    where \( \text{input}_i^{(l)} \) is the i-th input to neuron j at layer l
+    
+    \item \textbf{Bias as coefficient:} The bias is simply \( w_{j0}^{(l)} \) with constant input \( x_0 = 1 \) (or \( h_0^{(l-1)} = 1 \))
+\end{enumerate}
+
+\end{document}
